@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Health — Care That Moves With You</title>
+<meta name="description" content="Meridian Health connects specialists, diagnostics, and emergency care into one continuous pathway of care.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div id="preloader" aria-hidden="true">
+  <div class="loader-wrap">
+    <div class="loader-bento">
+      <div class="loader-cell loader-cell--plus">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        <span class="label">Care</span>
+      </div>
+      <div class="loader-cell loader-cell--pulse">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-7 4 14 2-7h8"/></svg>
+        <span class="label">Vitals</span>
+      </div>
+      <div class="loader-cell loader-cell--heart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.9-10-9.3C.4 8.2 2 4.5 5.6 4c2-.3 3.8.7 4.4 2.4C10.6 4.7 12.4 3.7 14.4 4c3.6.5 5.2 4.2 3.6 7.7C15.5 16.1 12 21 12 21z"/></svg>
+        <span class="label">Care</span>
+      </div>
+      <div class="loader-cell loader-cell--care">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <span class="label">24 / 7</span>
+      </div>
+    </div>
+    <div class="loader-percent-row">
+      <span>Meridian Health</span>
+      <span><span class="loader-percent-value">0</span>%</span>
+    </div>
+    <div class="loader-progress-track"><div class="loader-progress-fill"></div></div>
+  </div>
+</div>
+
+<!-- ============ PAGE TRANSITION OVERLAY ============ -->
+<div id="page-transition" style="position:fixed;inset:0;z-index:9997;background:var(--bg-deep);display:none;align-items:center;justify-content:center;"></div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar">
+  <div class="nav-shell"></div>
+  <div class="nav-inner wrap">
+    <a href="index.html" class="brand magnetic-target">
+      <span class="brand-logo-chip"><img src="assets/logo/logo.webp" alt="Stackly" class="brand-logo-img"></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="login.html" class="nav-login">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Login
+      </a>
+      <a href="create-account.html" class="btn btn-primary magnetic-target">
+        <span class="scramble" data-text="Create Account">Create Account</span>
+      </a>
+      <button id="nav-toggle" class="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="bars"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<nav id="mobile-menu" aria-label="Mobile">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="login.html">Login</a></li>
+    <!-- <li><a href="create-account.html">Create Account</a></li> -->
+  </ul>
+  <div class="mobile-menu-actions">
+    <a href="create-account.html" class="btn btn-primary">Book an Appointment</a>
+    <a href="tel:+10000000000" class="btn btn-ghost on-deep">Emergency Line</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ======================================================================
+     SECTION 01 — HERO
+====================================================================== -->
+<section class="hero">
+  <svg class="hero-bg-line" viewBox="0 0 1440 800" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-50,420 L300,420 L340,300 L380,540 L420,420 L750,420 L790,260 L830,560 L870,420 L1200,420 L1240,340 L1280,480 L1320,420 L1500,420"/>
+  </svg>
+
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Meridian Health · Patient-First Network</span>
+      <h1 class="h1" data-hero-heading>Every path in care leads back to you.</h1>
+      <p class="lede">Meridian connects specialists, diagnostics, and emergency response into one continuous pathway — so nothing about your treatment ever waits on a referral.</p>
+      <div class="hero-actions">
+        <a href="create-account.html" class="btn btn-primary magnetic-target">
+          Book an Appointment
+          <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </a>
+        <a href="services.html" class="btn btn-ghost magnetic-target">
+          <span class="scramble" data-text="View Services">View Services</span>
+        </a>
+      </div>
+
+      <div class="hero-stats-strip">
+        <div class="hstat"><b>25+</b><span>Years of Care</span></div>
+        <div class="hstat"><b>150+</b><span>Specialists</span></div>
+        <div class="hstat"><b>24/7</b><span>Emergency Line</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="ph-visual ph-visual--light bg-photo" style="background-image:url('assets/images/home1.webp');">
+        <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M-20,260 L120,260 L150,180 L180,340 L210,260 L420,260"/>
+        </svg>
+      </div>
+      <div class="mask-fill"></div>
+
+      <div class="vitals-strip" aria-hidden="true">
+        <span class="vitals-strip-label">Live Vitals</span>
+        <svg class="vitals-strip-chart" viewBox="0 0 330 157" preserveAspectRatio="none">
+          <path class="vitals-track" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+          <path class="vitals-pulse pulse-travel" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+        </svg>
+      </div>
+
+      <div class="floating-card floating-card--1">
+        <span class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+        <span><span class="fc-title">24/7 Emergency</span><span class="fc-sub">Response in under 8 min</span></span>
+      </div>
+      <div class="floating-card floating-card--2">
+        <span class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 21s-7.5-4.9-10-9.3C.4 8.2 2 4.5 5.6 4c2-.3 3.8.7 4.4 2.4C10.6 4.7 12.4 3.7 14.4 4c3.6.5 5.2 4.2 3.6 7.7C15.5 16.1 12 21 12 21z"/></svg></span>
+        <span><span class="fc-title">98% Satisfaction</span><span class="fc-sub">From 12,400 reviews</span></span>
+      </div>
+      <div class="floating-card floating-card--3">
+        <span class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-11M12 6V3M20 21v-5M20 12V3"/><path d="M2 14h4M10 6h4M18 12h4"/></svg></span>
+        <span><span class="fc-title">Board-Certified</span><span class="fc-sub">150+ specialists</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- ======================================================================
+     SECTION 02 — TRUST / STATISTICS
+====================================================================== -->
+<section class="section stats-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow section-tag">By the numbers</span>
+        <h2 class="h2">A track record measured in outcomes.</h2>
+      </div>
+      <p class="lede">Two and a half decades of coordinated care, from first consultation to full recovery.</p>
+    </div>
+
+    <div class="stats-grid" data-stagger-group>
+      <div class="card card-spotlight stat-card" data-stagger-item>
+        <div class="stat-num"><span data-counter="25">0</span>+</div>
+        <div class="stat-label">Years of experience</div>
+      </div>
+      <div class="card card-spotlight stat-card" data-stagger-item>
+        <div class="stat-num"><span data-counter="150">0</span>+</div>
+        <div class="stat-label">Doctors &amp; specialists</div>
+      </div>
+      <div class="card card-spotlight stat-card" data-stagger-item>
+        <div class="stat-num"><span data-counter="50">0</span>K+</div>
+        <div class="stat-label">Patients treated</div>
+      </div>
+      <div class="card card-spotlight stat-card" data-stagger-item>
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Emergency care, always on</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     SECTION 03 — HOSPITAL INTRODUCTION
+====================================================================== -->
+<section class="section intro-section">
+  <div class="wrap intro-grid">
+    <div class="intro-visual">
+      <div class="intro-img-frame" data-animate="mask-reveal" data-mask-dir="left">
+        <div class="ph-visual bg-photo" style="background-image:url('assets/images/home2.webp');">
+          <svg viewBox="0 0 400 480" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <path d="M-20,240 L100,240 L130,150 L160,330 L190,240 L420,240"/>
+          </svg>
+        </div>
+      </div>
+      <div class="intro-floater" data-animate="fade-up" data-start="top 95%">
+        <div class="stat-num"><span data-counter="12">0</span>+</div>
+        <div class="stat-label">Accredited centers of excellence</div>
+      </div>
+    </div>
+
+    <div class="intro-copy">
+      <span class="eyebrow section-tag">Our story</span>
+      <h2 class="h2" data-split="words" data-split-auto="true">Built as a network, not a waiting room.</h2>
+      <p class="lede">Meridian Health began in 2001 as a single community clinic. Today it's a connected network of specialists, diagnostic labs, and recovery programs — designed so your care record, your doctors, and your next step all move with you.</p>
+
+      <ul class="intro-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> One patient record across every department</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Same-week specialist referrals</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> In-house diagnostics and pharmacy</li>
+      </ul>
+
+      <div class="intro-mini-stats">
+        <div class="hstat"><b>4</b><span>Regional campuses</span></div>
+        <div class="hstat"><b>9.4/10</b><span>Care rating</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     SECTION 04 — SERVICES BENTO GRID
+====================================================================== -->
+<section class="section services-section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow section-tag">Departments</span>
+        <h2 class="h2">Care organized around you, not the org chart.</h2>
+      </div>
+      <a href="services.html" class="btn btn-ghost magnetic-target">All services
+        <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+      </a>
+    </div>
+
+    <div class="services-bento" data-stagger-group>
+      <a href="services.html" class="card card-spotlight svc-card svc-card--lg svc-card--dark" data-stagger-item>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <div>
+          <div class="svc-name">Emergency Care</div>
+          <div class="svc-desc">Round-the-clock trauma and urgent response, average wait under 8 minutes.</div>
+          <div class="svc-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></div>
+        </div>
+      </a>
+
+      <a href="services.html" class="card card-spotlight svc-card" data-stagger-item>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-7 4 14 2-7h8"/></svg></div>
+        <div><div class="svc-name">Cardiology</div><div class="svc-desc">Heart health &amp; imaging</div></div>
+      </a>
+
+      <a href="services.html" class="card card-spotlight svc-card" data-stagger-item>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3a3 3 0 0 1 3 3v1a3 3 0 0 1 3 3 3 3 0 0 1-1 5.6V19a2 2 0 0 1-4 0v-2M9.5 3a3 3 0 0 0-3 3v10a2 2 0 0 0 4 0"/></svg></div>
+        <div><div class="svc-name">Neurology</div><div class="svc-desc">Brain &amp; nervous system</div></div>
+      </a>
+
+      <a href="services.html" class="card card-spotlight svc-card svc-card--wide" data-stagger-item>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.9-10-9.3C.4 8.2 2 4.5 5.6 4c2-.3 3.8.7 4.4 2.4C10.6 4.7 12.4 3.7 14.4 4c3.6.5 5.2 4.2 3.6 7.7C15.5 16.1 12 21 12 21z"/></svg></div>
+        <div><div class="svc-name">Pediatrics</div><div class="svc-desc">Gentle, family-centered checkups and immunizations for every age.</div></div>
+      </a>
+
+      <a href="services.html" class="card card-spotlight svc-card" data-stagger-item>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20V10M6 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 20v-6M18 14a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg></div>
+        <div><div class="svc-name">Orthopedics</div><div class="svc-desc">Bones, joints &amp; recovery</div></div>
+      </a>
+
+      <a href="services.html" class="card card-spotlight svc-card" data-stagger-item>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        <div><div class="svc-name">Diagnostics</div><div class="svc-desc">Lab &amp; imaging, same-day</div></div>
+      </a>
+
+      <a href="services.html" class="card card-spotlight svc-card" data-stagger-item>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1 19.1 4.9M8.5 8.5l7 7M15 4l5 5-9.5 9.5a3.5 3.5 0 1 1-5-5L15 4z"/></svg></div>
+        <div><div class="svc-name">Surgery</div><div class="svc-desc">Precision surgical suites</div></div>
+      </a>
+
+      <a href="services.html" class="card card-spotlight svc-card" data-stagger-item>
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg></div>
+        <div><div class="svc-name">Pharmacy</div><div class="svc-desc">On-site prescriptions</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     SECTION 05 — DOCTORS / SPECIALISTS
+====================================================================== -->
+<section class="section doctors-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow section-tag">Meet the team</span>
+        <h2 class="h2">Specialists worth waiting for — mostly, you won't have to.</h2>
+      </div>
+    </div>
+
+    <div class="doctors-track" data-stagger-group>
+      <article class="doctor-card" data-tilt data-stagger-item>
+        <div class="doctor-card-inner" data-tilt-inner>
+          <div class="avatar-initials">AC</div>
+          <div class="doctor-info">
+            <div class="doctor-name">Dr. Amara Chen</div>
+            <div class="doctor-spec">Cardiology</div>
+            <div class="doctor-meta"><span>14 yrs exp.</span><span class="doctor-avail">Available Mon–Fri</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="doctor-card" data-tilt data-stagger-item>
+        <div class="doctor-card-inner" data-tilt-inner>
+          <div class="avatar-initials">RM</div>
+          <div class="doctor-info">
+            <div class="doctor-name">Dr. Rohan Mehta</div>
+            <div class="doctor-spec">Neurology</div>
+            <div class="doctor-meta"><span>11 yrs exp.</span><span class="doctor-avail">Available Tue–Sat</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="doctor-card" data-tilt data-stagger-item>
+        <div class="doctor-card-inner" data-tilt-inner>
+          <div class="avatar-initials">EF</div>
+          <div class="doctor-info">
+            <div class="doctor-name">Dr. Elena Fischer</div>
+            <div class="doctor-spec">Pediatrics</div>
+            <div class="doctor-meta"><span>9 yrs exp.</span><span class="doctor-avail">Available Mon–Sat</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="doctor-card" data-tilt data-stagger-item>
+        <div class="doctor-card-inner" data-tilt-inner>
+          <div class="avatar-initials">MW</div>
+          <div class="doctor-info">
+            <div class="doctor-name">Dr. Marcus Webb</div>
+            <div class="doctor-spec">Orthopedics</div>
+            <div class="doctor-meta"><span>17 yrs exp.</span><span class="doctor-avail">Available Wed–Sun</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     SECTION 06 — PATIENT JOURNEY (horizontal scroll)
+====================================================================== -->
+<section class="journey-pin">
+  <div class="journey-head wrap">
+    <span class="eyebrow section-tag">The patient journey</span>
+    <h2 class="h2">Five steps. One continuous line of care.</h2>
+  </div>
+  <div class="journey-track">
+    <div class="card journey-step" style="background-image:url('assets/images/home1.webp');">
+      <span class="journey-num">01 / Book</span>
+      <div>
+        <h3 class="h3">Book Appointment</h3>
+        <!-- <p>Choose a specialist and a time slot online — most requests are confirmed within the hour.</p> -->
+      </div>
+      <span class="journey-connector"></span>
+    </div>
+    <div class="card journey-step" style="background-image:url('assets/images/home2.webp');">
+      <span class="journey-num">02 / Consult</span>
+      <div>
+        <h3 class="h3">Consultation</h3>
+        <!-- <p>Meet your specialist in person or by video, with your full history already on hand.</p> -->
+      </div>
+      <span class="journey-connector"></span>
+    </div>
+    <div class="card journey-step" style="background-image:url('assets/images/home3.webp');">
+      <span class="journey-num">03 / Diagnose</span>
+      <div>
+        <h3 class="h3">Diagnosis</h3>
+        <!-- <p>In-house labs and imaging return same-day results in most cases.</p> -->
+      </div>
+      <span class="journey-connector"></span>
+    </div>
+    <div class="card journey-step" style="background-image:url('assets/images/home4.webp');">
+      <span class="journey-num">04 / Treat</span>
+      <div>
+        <h3 class="h3">Treatment</h3>
+        <!-- <p>A care plan built around your schedule, your history, and your specialists.</p> -->
+      </div>
+      <span class="journey-connector"></span>
+    </div>
+    <div class="card journey-step" style="background-image:url('assets/images/home5.webp');">
+      <span class="journey-num">05 / Recover</span>
+      <div>
+        <h3 class="h3">Recovery</h3>
+        <!-- <p>Follow-ups and rehab tracked in one dashboard, so nothing falls through.</p> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     SECTION 07 — WHY CHOOSE US (sticky storytelling)
+====================================================================== -->
+<section class="section why-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow section-tag">Why Meridian</span>
+        <h2 class="h2">The difference is in the coordination.</h2>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-sticky">
+        <div class="why-visual">
+          <div class="ph-visual bg-photo" style="background-image:url('assets/images/home3.webp');">
+            <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <path d="M-20,250 L110,250 L140,160 L170,340 L200,250 L420,250"/>
+            </svg>
+          </div>
+          <div class="why-visual-stat">
+            <div class="stat-num" style="font-size:1.4rem;"><span data-counter="8">0</span> min</div>
+            <div class="stat-label" style="font-size:.78rem;">Avg. emergency response</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-items">
+        <div class="why-item is-active">
+          <span class="why-item-num">01</span>
+          <h3 class="h3">One record, every department</h3>
+          <p>Your history follows you from cardiology to physiotherapy — no repeated paperwork, no lost scans.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-item-num">02</span>
+          <h3 class="h3">Specialists who actually talk to each other</h3>
+          <p>Weekly case reviews mean your care team is aligned before you ever ask them to be.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-item-num">03</span>
+          <h3 class="h3">Technology that shortens the wait</h3>
+          <p>Digital triage and same-day diagnostics cut the average time-to-treatment by 40%.</p>
+        </div>
+        <div class="why-item">
+          <span class="why-item-num">04</span>
+          <h3 class="h3">Care that doesn't stop at discharge</h3>
+          <p>Recovery plans, reminders, and follow-ups are tracked automatically in your dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     SECTION 08 — TESTIMONIALS
+====================================================================== -->
+<section class="section testimonials-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow section-tag">Patient stories</span>
+        <h2 class="h2">Care, from the other side of the desk.</h2>
+      </div>
+    </div>
+
+    <div class="testi-layout">
+      <div class="testi-stage card">
+        <div class="testi-card is-active">
+          <div class="testi-avatar avatar-initials avatar-initials--sm">NP</div>
+          <div>
+            <div class="testi-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </div>
+            <p class="testi-quote">The cardiology team caught something my old clinic missed for two years. Everyone I spoke with had already read my file.</p>
+            <div class="testi-name">Nina Park</div>
+            <div class="testi-role">Patient since 2022</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-avatar avatar-initials avatar-initials--sm">DO</div>
+          <div>
+            <div class="testi-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </div>
+            <p class="testi-quote">Booked a same-week neurology referral through the portal. My old hospital would've taken two months.</p>
+            <div class="testi-name">David Osei</div>
+            <div class="testi-role">Patient since 2021</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-avatar avatar-initials avatar-initials--sm">JL</div>
+          <div>
+            <div class="testi-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </div>
+            <p class="testi-quote">Our pediatrician remembers details about my kids I forget myself. It doesn't feel like a hospital system — it feels personal.</p>
+            <div class="testi-name">Jamie Lin</div>
+            <div class="testi-role">Patient since 2023</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-avatar avatar-initials avatar-initials--sm">MW</div>
+          <div>
+            <div class="testi-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </div>
+            <p class="testi-quote">After my knee surgery, the recovery plan just showed up in my dashboard automatically. I never had to chase down a physiotherapist.</p>
+            <div class="testi-name">Marcus Webb Jr.</div>
+            <div class="testi-role">Patient since 2020</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-avatar avatar-initials avatar-initials--sm">PS</div>
+          <div>
+            <div class="testi-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </div>
+            <p class="testi-quote">Bloodwork results were in my account before I even got home. My specialist had already reviewed them by the next morning.</p>
+            <div class="testi-name">Priya Sharma</div>
+            <div class="testi-role">Patient since 2024</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-avatar avatar-initials avatar-initials--sm">EV</div>
+          <div>
+            <div class="testi-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </div>
+            <p class="testi-quote">I did a telehealth consult on my lunch break and it pulled up my full history like I was sitting in the room. No repeating myself.</p>
+            <div class="testi-name">Elena Voss</div>
+            <div class="testi-role">Patient since 2022</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-avatar avatar-initials avatar-initials--sm">CM</div>
+          <div>
+            <div class="testi-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </div>
+            <p class="testi-quote">Walked into the ER at 2am and was being treated before I finished filling out my name. That response time is not normal — in the best way.</p>
+            <div class="testi-name">Carlos Mendes</div>
+            <div class="testi-role">Patient since 2023</div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-avatar avatar-initials avatar-initials--sm">HY</div>
+          <div>
+            <div class="testi-stars">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </div>
+            <p class="testi-quote">My prescription was ready at the on-site pharmacy before I'd even left my doctor's office. Saved me a whole extra trip.</p>
+            <div class="testi-name">Hana Yoon</div>
+            <div class="testi-role">Patient since 2021</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-controls">
+        <div class="testi-dots">
+          <span class="testi-dot is-active"></span><span class="testi-dot"></span><span class="testi-dot"></span><span class="testi-dot"></span><span class="testi-dot"></span><span class="testi-dot"></span><span class="testi-dot"></span><span class="testi-dot"></span>
+        </div>
+        <div class="testi-nav">
+          <button class="testi-arrow testi-arrow--prev" aria-label="Previous testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="testi-arrow testi-arrow--next" aria-label="Next testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Compassionate Care</span><span>24/7 Emergency</span><span>Advanced Technology</span><span>Trusted Doctors</span><span>Patient First</span>
+      <span>Compassionate Care</span><span>24/7 Emergency</span><span>Advanced Technology</span><span>Trusted Doctors</span><span>Patient First</span>
+    </div>
+  </div>
+  <div class="marquee marquee--reverse">
+    <div class="marquee-track">
+      <span>Same-Day Diagnostics</span><span>Board-Certified Specialists</span><span>Coordinated Care</span><span>50,000+ Patients</span>
+      <span>Same-Day Diagnostics</span><span>Board-Certified Specialists</span><span>Coordinated Care</span><span>50,000+ Patients</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     SECTION 09 — HEALTH BLOG / INSIGHTS
+====================================================================== -->
+<section class="section blog-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow section-tag">Health insights</span>
+        <h2 class="h2">Notes from our specialists.</h2>
+      </div>
+      <a href="blog.html" class="btn btn-ghost magnetic-target">Visit the blog
+        <span class="btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+      </a>
+    </div>
+
+    <div class="blog-bento" data-stagger-group>
+      <a href="blog.html" class="blog-card blog-card--featured" data-stagger-item>
+        <div class="blog-img"><div class="ph-visual bg-photo" style="background-image:url('assets/images/home4.webp');"></div><span class="blog-cat">Cardiology</span></div>
+        <div class="blog-body">
+          <span class="blog-date">Aug 14, 2026</span>
+          <div class="blog-title">Five early warning signs your heart is asking for attention</div>
+          <span class="blog-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="blog.html" class="blog-card" data-stagger-item>
+        <div class="blog-img"><div class="ph-visual ph-visual--light bg-photo" style="background-image:url('assets/images/home5.webp');"></div><span class="blog-cat">Pediatrics</span></div>
+        <div class="blog-body">
+          <span class="blog-date">Aug 08, 2026</span>
+          <div class="blog-title">Building a vaccination schedule that actually sticks</div>
+          <span class="blog-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="blog.html" class="blog-card" data-stagger-item>
+        <div class="blog-img"><div class="ph-visual bg-photo" style="background-image:url('assets/images/home1.webp');"></div><span class="blog-cat">Nutrition</span></div>
+        <div class="blog-body">
+          <span class="blog-date">Jul 30, 2026</span>
+          <div class="blog-title">What your bloodwork actually tells you about diet</div>
+          <span class="blog-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     SECTION 10 — FINAL CTA
+====================================================================== -->
+<section class="cta-final">
+  <svg class="cta-pulse-line" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-50,100 L400,100 L440,40 L480,160 L520,100 L900,100 L940,20 L980,180 L1020,100 L1500,100"/>
+  </svg>
+  <div class="wrap">
+    <span class="eyebrow section-tag">Ready when you are</span>
+    <h2 class="h1" data-animate="blur-reveal">Your health deserves <span class="morph-word" data-morph="better care, faster answers, real coordination, a team that listens">better care</span>.</h2>
+    <div class="cta-final-actions">
+      <a href="create-account.html" class="btn btn-primary magnetic-target">Book Appointment</a>
+      <a href="contact.html" class="btn btn-ghost magnetic-target">Contact Hospital</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer id="site-footer">
+  <div class="wrap">
+    <div class="footer-hero magnetic-target">CARE THAT MOVES WITH YOU.<span class="glow" aria-hidden="true"></span></div>
+
+    <div class="footer-bento">
+      <div class="footer-cell">
+        <a href="index.html" class="brand" style="margin-bottom:14px;">
+          <span class="brand-logo-chip"><img src="assets/logo/logo.webp" alt="Stackly" class="brand-logo-img"></span>
+        </a>
+        <p class="footer-desc">A connected network of specialists, diagnostics, and emergency care — built around one continuous pathway of treatment.</p>
+        <div class="footer-socials">
+          <a href="404.html" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="404.html" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 3h-2a5 5 0 0 0-5 5v3H6v4h2v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="404.html" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 13v4"/></svg></a>
+          <a href="404.html" class="social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="m10 9 5 3-5 3z"/></svg></a>
+          <a href="404.html" class="social-btn" aria-label="X / Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l16 16M20 4 4 20"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-cell">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-cell">
+        <h4>Departments</h4>
+        <ul>
+          <li><a href="404.html">Emergency Care</a></li>
+          <li><a href="404.html">Cardiology</a></li>
+          <li><a href="404.html">Neurology</a></li>
+          <li><a href="404.html">Pediatrics</a></li>
+          <li><a href="404.html">Diagnostics</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-cell">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+919876543210">91 9876543210</a></li>
+          <li><a href="mailto:hr@stackly.com">hr@stackly.com</a></li>
+          <li><span class="mono-label" style="color:var(--ink-on-deep-soft)">Suraksha Nagar, Yelenahalli, Begur,Bengaluru, Karnataka - 560068</span></li>
+          <li><span class="mono-label" style="color:var(--ink-on-deep-soft)">Mon–Sun, Emergency 24/7</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Meridian Health Network. All rights reserved.</span>
+      <span class="legal-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms &amp; Conditions</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+</body>
+</html>

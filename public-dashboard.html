@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Portal — Meridian Health</title>
+<meta name="description" content="Your Meridian Health patient dashboard — appointments, care team, health summary, and prescriptions.">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="dash-body">
+
+<!-- ============ PRELOADER ============ -->
+<div id="preloader" aria-hidden="true">
+  <div class="loader-wrap">
+    <div class="loader-bento">
+      <div class="loader-cell loader-cell--plus">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        <span class="label">Care</span>
+      </div>
+      <div class="loader-cell loader-cell--pulse">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-7 4 14 2-7h8"/></svg>
+        <span class="label">Vitals</span>
+      </div>
+      <div class="loader-cell loader-cell--heart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.9-10-9.3C.4 8.2 2 4.5 5.6 4c2-.3 3.8.7 4.4 2.4C10.6 4.7 12.4 3.7 14.4 4c3.6.5 5.2 4.2 3.6 7.7C15.5 16.1 12 21 12 21z"/></svg>
+        <span class="label">Care</span>
+      </div>
+      <div class="loader-cell loader-cell--care">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <span class="label">24 / 7</span>
+      </div>
+    </div>
+    <div class="loader-percent-row">
+      <span>Patient Portal</span>
+      <span><span class="loader-percent-value">0</span>%</span>
+    </div>
+    <div class="loader-progress-track"><div class="loader-progress-fill"></div></div>
+  </div>
+</div>
+
+<div id="page-transition" style="position:fixed;inset:0;z-index:9997;background:var(--bg-deep);display:none;align-items:center;justify-content:center;"></div>
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+<div class="sidebar-backdrop"></div>
+
+<!-- ============ TOP BAR — logo left, profile right, no public nav ============ -->
+<header class="dash-topbar">
+  <div class="dash-topbar-left">
+    <button class="sidebar-toggle" aria-label="Toggle sidebar">
+      <span class="bars"><span></span><span></span><span></span></span>
+    </button>
+    <a href="index.html" class="brand magnetic-target">
+      <span class="brand-logo-chip"><img src="assets/logo/logo.webp" alt="Stackly" class="brand-logo-img"></span>
+    </a>
+  </div>
+  <div class="dash-topbar-right">
+    <button class="icon-btn" aria-label="Notifications">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+      <span class="dot"></span>
+    </button>
+    <div class="profile-widget">
+      <button class="profile-trigger">
+        <span class="avatar-initials">NP</span>
+        <span class="profile-trigger-name" data-session-name>Nina Park<span class="profile-trigger-role">Patient</span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="profile-panel">
+        <div class="profile-panel-head">
+          <span class="avatar-initials">NP</span>
+          <div>
+            <div class="profile-panel-name" data-session-name>Nina Park</div>
+            <div class="profile-panel-email" data-session-email>nina.park@example.com</div>
+            <span class="profile-panel-badge">Patient</span>
+          </div>
+        </div>
+        <a href="#" class="profile-menu-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+          Account settings
+        </a>
+        <a href="index.html" class="profile-menu-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 4l9 8"/><path d="M5 10v10h14V10"/></svg>
+          View public site
+        </a>
+        <button type="button" class="profile-menu-item profile-menu-item--danger" data-logout>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+          Log out
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="dash-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="dash-sidebar">
+    <span class="sidebar-label">Menu</span>
+    <nav class="sidebar-nav">
+      <a href="#overview" class="sidebar-link is-active" data-panel="overview">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+        Overview
+      </a>
+      <a href="#appointment" class="sidebar-link" data-panel="appointment">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>
+        Appointment
+      </a>
+      <a href="#careteam" class="sidebar-link" data-panel="careteam">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>
+        Care Team
+      </a>
+      <a href="#services" class="sidebar-link" data-panel="services">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Services
+      </a>
+      <a href="#health" class="sidebar-link" data-panel="health">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-7 4 14 2-7h8"/></svg>
+        Health Summary
+      </a>
+      <a href="#history" class="sidebar-link" data-panel="history">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM4 9h16M9 21V9"/></svg>
+        History
+      </a>
+    </nav>
+
+    <span class="sidebar-label">Account</span>
+    <nav class="sidebar-nav">
+      <a href="#prescriptions" class="sidebar-link" data-panel="prescriptions">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg>
+        Prescriptions
+      </a>
+      <a href="#billing" class="sidebar-link" data-panel="billing">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Billing
+      </a>
+      <a href="#documents" class="sidebar-link" data-panel="documents">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+        Documents
+      </a>
+      <a href="#messages" class="sidebar-link" data-panel="messages">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        Notifications
+      </a>
+    </nav>
+
+    <div class="sidebar-foot">
+      <span class="sidebar-foot-label">Emergency</span>
+      <a href="tel:+19110000000" class="btn btn-primary">Call</a>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+
+    <!-- WELCOME -->
+    <div class="welcome-banner" id="overview">
+      <svg class="welcome-banner-line" viewBox="0 0 700 200" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M-20,120 L150,120 L180,60 L210,170 L240,120 L500,120 L530,50 L560,180 L590,120 L720,120"/>
+      </svg>
+      <div class="welcome-banner-copy">
+        <span class="eyebrow on-deep">Welcome back</span>
+        <h2 class="h2"><span data-session-name>Nina</span>, here's where things stand.</h2>
+        <p>Your next appointment is in 2 days. Your last lab results are in and look good.</p>
+      </div>
+      <div class="welcome-banner-actions">
+        <a href="#appointment" class="btn btn-primary magnetic-target">View Appointment</a>
+        <a href="#health" class="btn btn-ghost on-deep magnetic-target">Health Summary</a>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <div class="quick-actions" data-dash-stagger>
+      <a href="create-account.html" class="card card-spotlight quick-action magnetic-target">
+        <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18M12 15v4M10 17h4"/></svg></span>
+        <div class="quick-action-label">Book Appointment</div>
+      </a>
+      <a href="#messages" class="card card-spotlight quick-action magnetic-target">
+        <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <div class="quick-action-label">Message a Doctor</div>
+      </a>
+      <a href="#history" class="card card-spotlight quick-action magnetic-target">
+        <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM4 9h16M9 21V9"/></svg></span>
+        <div class="quick-action-label">View Records</div>
+      </a>
+      <a href="#prescriptions" class="card card-spotlight quick-action magnetic-target">
+        <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg></span>
+        <div class="quick-action-label">Refill Prescription</div>
+      </a>
+    </div>
+
+    <!-- UPCOMING APPOINTMENT -->
+    <div class="section-title-row" id="appointment"><h3>Upcoming appointment</h3></div>
+    <div class="card appt-card" style="margin-bottom:24px;">
+      <div class="appt-date-block"><div class="day">23</div><div class="month">Aug</div></div>
+      <div class="appt-info">
+        <div class="doc">Dr. Amara Chen</div>
+        <div class="dept">Cardiology · Follow-up consult</div>
+        <div class="appt-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 9:30 AM · Main Campus, 2nd Floor</div>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <button type="button" class="btn btn-ghost" style="padding:11px 18px; font-size:.85rem;">Reschedule</button>
+        <button type="button" class="btn btn-primary magnetic-target" style="padding:11px 18px; font-size:.85rem;">Join Check-in</button>
+      </div>
+    </div>
+
+    <!-- DOCTOR INFORMATION -->
+    <div class="section-title-row" id="careteam"><h3>Your care team</h3></div>
+    <div class="dash-stats" style="grid-template-columns: repeat(3, 1fr); margin-bottom:24px;" data-dash-stagger>
+      <div class="mini-doctor-card card">
+        <div class="avatar-initials">AC</div>
+        <div class="name">Dr. Amara Chen</div>
+        <div class="spec">Cardiology · Primary</div>
+        <div class="stat-row"><div><b>6</b><span>Visits</span></div><div><b>4.9</b><span>Rating</span></div></div>
+        <button type="button" class="btn btn-ghost" style="width:100%; justify-content:center; margin-top:16px; padding:9px; font-size:.82rem;">Message</button>
+      </div>
+      <div class="mini-doctor-card card">
+        <div class="avatar-initials">RM</div>
+        <div class="name">Dr. Rohan Mehta</div>
+        <div class="spec">Neurology</div>
+        <div class="stat-row"><div><b>2</b><span>Visits</span></div><div><b>4.8</b><span>Rating</span></div></div>
+        <button type="button" class="btn btn-ghost" style="width:100%; justify-content:center; margin-top:16px; padding:9px; font-size:.82rem;">Message</button>
+      </div>
+      <div class="mini-doctor-card card">
+        <div class="avatar-initials">LO</div>
+        <div class="name">Dr. Liam O'Connor</div>
+        <div class="spec">Dermatology</div>
+        <div class="stat-row"><div><b>1</b><span>Visit</span></div><div><b>4.6</b><span>Rating</span></div></div>
+        <button type="button" class="btn btn-ghost" style="width:100%; justify-content:center; margin-top:16px; padding:9px; font-size:.82rem;">Message</button>
+      </div>
+    </div>
+
+    <!-- MEDICAL SERVICES -->
+    <div class="section-title-row" id="services"><h3>Medical services</h3></div>
+    <div class="dept-grid" style="margin-bottom:24px;" data-dash-stagger>
+      <a href="services.html#emergency" class="card dept-card magnetic-target">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <div><div class="dept-name">Emergency Care</div><div class="dept-sub">Walk-in, 24/7</div></div>
+      </a>
+      <a href="services.html#diagnostics" class="card dept-card magnetic-target">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        <div><div class="dept-name">Diagnostics</div><div class="dept-sub">Book a lab or scan</div></div>
+      </a>
+      <a href="services.html#pharmacy" class="card dept-card magnetic-target">
+        <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg></div>
+        <div><div class="dept-name">Pharmacy</div><div class="dept-sub">Refill a prescription</div></div>
+      </a>
+    </div>
+
+    <!-- HEALTH SUMMARY -->
+    <div class="section-title-row" id="health"><h3>Health summary</h3></div>
+    <div class="health-summary-grid" style="margin-bottom:24px;" data-dash-stagger>
+      <div class="card health-metric">
+        <div class="health-metric-val">120/80</div>
+        <div class="health-metric-label">Blood Pressure</div>
+      </div>
+      <div class="card health-metric">
+        <div class="health-metric-val">72 bpm</div>
+        <div class="health-metric-label">Resting Heart Rate</div>
+      </div>
+      <div class="card health-metric">
+        <div class="health-metric-val">Jul 14</div>
+        <div class="health-metric-label">Last Checkup</div>
+      </div>
+    </div>
+
+    <!-- APPOINTMENT HISTORY -->
+    <div class="section-title-row" id="history"><h3>Appointment history</h3></div>
+    <div class="card" style="padding:24px; margin-bottom:24px;">
+      <div class="dash-table-wrap">
+        <table class="dash-table">
+          <thead><tr><th>Doctor</th><th>Department</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Dr. Amara Chen</td><td>Cardiology</td><td>Jul 14, 2026</td><td><span class="status-pill status-pill--success">Completed</span></td></tr>
+            <tr><td>Dr. Rohan Mehta</td><td>Neurology</td><td>May 02, 2026</td><td><span class="status-pill status-pill--success">Completed</span></td></tr>
+            <tr><td>Dr. Liam O'Connor</td><td>Dermatology</td><td>Feb 19, 2026</td><td><span class="status-pill status-pill--success">Completed</span></td></tr>
+            <tr><td>Dr. Amara Chen</td><td>Cardiology</td><td>Jan 08, 2026</td><td><span class="status-pill status-pill--danger">Cancelled</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="chart-row" style="grid-template-columns: 1fr 1fr;">
+      <!-- PRESCRIPTIONS -->
+      <div class="card" style="padding:24px;" id="prescriptions">
+        <div class="section-title-row"><h3>Prescriptions</h3></div>
+        <div class="rx-item">
+          <span class="rx-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg></span>
+          <div style="flex:1;"><div class="rx-name">Atorvastatin 10mg</div><div class="rx-meta">1 tablet daily · 2 refills left</div></div>
+          <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;">Refill</button>
+        </div>
+        <div class="rx-item">
+          <span class="rx-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg></span>
+          <div style="flex:1;"><div class="rx-name">Metoprolol 25mg</div><div class="rx-meta">2 tablets daily · 0 refills left</div></div>
+          <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;">Request</button>
+        </div>
+      </div>
+
+      <!-- NOTIFICATIONS -->
+      <div class="card" style="padding:24px;" id="messages">
+        <div class="section-title-row"><h3>Notifications</h3></div>
+        <div class="notif-list">
+          <div class="notif-item is-unread">
+            <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div><div class="activity-text">Lab results from your Jul 14 visit are ready</div><div class="activity-time">2 days ago</div></div>
+          </div>
+          <div class="notif-item is-unread">
+            <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></span>
+            <div><div class="activity-text">Reminder: appointment with Dr. Chen on Aug 23</div><div class="activity-time">Today</div></div>
+          </div>
+          <div class="notif-item">
+            <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg></span>
+            <div><div class="activity-text">Metoprolol refill request received</div><div class="activity-time">4 days ago</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BILLING & INSURANCE -->
+    <div class="section-title-row" id="billing"><h3>Billing &amp; insurance</h3></div>
+    <div class="chart-row" style="grid-template-columns: 1.4fr 1fr; margin-bottom:24px;">
+      <div class="card" style="padding:24px;">
+        <div class="dash-table-wrap">
+          <table class="dash-table">
+            <thead><tr><th>Invoice</th><th>Service</th><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>#INV-30291</td><td>Cardiology Follow-up</td><td>Jul 14, 2026</td><td>$180.00</td><td><span class="status-pill status-pill--success">Paid</span></td></tr>
+              <tr><td>#INV-30104</td><td>Blood Panel — Diagnostics</td><td>Jun 02, 2026</td><td>$95.00</td><td><span class="status-pill status-pill--success">Paid</span></td></tr>
+              <tr><td>#INV-29988</td><td>Neurology Consult</td><td>May 02, 2026</td><td>$220.00</td><td><span class="status-pill status-pill--pending">Pending</span></td></tr>
+              <tr><td>#INV-29650</td><td>Dermatology Visit</td><td>Feb 19, 2026</td><td>$140.00</td><td><span class="status-pill status-pill--success">Paid</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" style="padding:24px;">
+        <div class="section-title-row"><h3>Insurance on file</h3></div>
+        <div class="rx-item">
+          <span class="rx-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg></span>
+          <div style="flex:1;"><div class="rx-name">BlueCrest Health Plan</div><div class="rx-meta">Member ID: BC-88213-NP · PPO</div></div>
+        </div>
+        <div class="health-metric" style="margin-top:16px; padding:16px; text-align:left;">
+          <div class="health-metric-label" style="margin-bottom:6px;">Outstanding balance</div>
+          <div class="health-metric-val" style="font-size:1.6rem;">$220.00</div>
+        </div>
+        <button type="button" class="btn btn-primary magnetic-target" style="width:100%; justify-content:center; margin-top:16px;">Make a Payment</button>
+      </div>
+    </div>
+
+    <!-- DOCUMENTS & RECORDS -->
+    <div class="section-title-row" id="documents"><h3>Documents &amp; records</h3></div>
+    <div class="card" style="padding:24px; margin-bottom:24px;">
+      <div class="rx-item">
+        <span class="rx-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+        <div style="flex:1;"><div class="rx-name">Lab Results — Jul 14, 2026</div><div class="rx-meta">Complete Blood Count · PDF · 240 KB</div></div>
+        <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;">Download</button>
+      </div>
+      <div class="rx-item">
+        <span class="rx-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+        <div style="flex:1;"><div class="rx-name">Visit Summary — Cardiology</div><div class="rx-meta">Dr. Amara Chen · PDF · 180 KB</div></div>
+        <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;">Download</button>
+      </div>
+      <div class="rx-item">
+        <span class="rx-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+        <div style="flex:1;"><div class="rx-name">Immunization Record</div><div class="rx-meta">Updated Jan 08, 2026 · PDF · 95 KB</div></div>
+        <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;">Download</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Meridian Health</title>
+<meta name="description" content="Health insights and explainers from Meridian Health specialists — cardiology, pediatrics, neurology, nutrition, and more.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div id="preloader" aria-hidden="true">
+  <div class="loader-wrap">
+    <div class="loader-bento">
+      <div class="loader-cell loader-cell--plus">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        <span class="label">Care</span>
+      </div>
+      <div class="loader-cell loader-cell--pulse">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-7 4 14 2-7h8"/></svg>
+        <span class="label">Vitals</span>
+      </div>
+      <div class="loader-cell loader-cell--heart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.9-10-9.3C.4 8.2 2 4.5 5.6 4c2-.3 3.8.7 4.4 2.4C10.6 4.7 12.4 3.7 14.4 4c3.6.5 5.2 4.2 3.6 7.7C15.5 16.1 12 21 12 21z"/></svg>
+        <span class="label">Care</span>
+      </div>
+      <div class="loader-cell loader-cell--care">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <span class="label">24 / 7</span>
+      </div>
+    </div>
+    <div class="loader-percent-row">
+      <span>Meridian Health</span>
+      <span><span class="loader-percent-value">0</span>%</span>
+    </div>
+    <div class="loader-progress-track"><div class="loader-progress-fill"></div></div>
+  </div>
+</div>
+
+<!-- ============ PAGE TRANSITION OVERLAY ============ -->
+<div id="page-transition" style="position:fixed;inset:0;z-index:9997;background:var(--bg-deep);display:none;align-items:center;justify-content:center;"></div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar" class="navbar-on-dark">
+  <div class="nav-shell"></div>
+  <div class="nav-inner wrap">
+    <a href="index.html" class="brand magnetic-target">
+      <span class="brand-logo-chip"><img src="assets/logo/logo.webp" alt="Stackly" class="brand-logo-img"></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="login.html" class="nav-login">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Login
+      </a>
+      <a href="create-account.html" class="btn btn-primary magnetic-target">
+        <span class="scramble" data-text="Create Account">Create Account</span>
+      </a>
+      <button id="nav-toggle" class="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span class="bars"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<nav id="mobile-menu" aria-label="Mobile">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="login.html">Login</a></li>
+    <!-- <li><a href="create-account.html">Create Account</a></li> -->
+  </ul>
+  <div class="mobile-menu-actions">
+    <a href="create-account.html" class="btn btn-primary">Book an Appointment</a>
+    <a href="tel:+10000000000" class="btn btn-ghost on-deep">Emergency Line</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- 01 — ANIMATED BLOG HERO -->
+<section class="page-hero on-deep">
+  <div class="page-hero-decor" aria-hidden="true">
+    <span class="page-hero-blob page-hero-blob--1"></span>
+    <span class="page-hero-blob page-hero-blob--2"></span>
+    <span class="page-hero-icon page-hero-icon--1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.9-10-9.3C.4 8.2 2 4.5 5.6 4c2-.3 3.8.7 4.4 2.4C10.6 4.7 12.4 3.7 14.4 4c3.6.5 5.2 4.2 3.6 7.7C15.5 16.1 12 21 12 21z"/></svg></span>
+    <span class="page-hero-icon page-hero-icon--2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+    <span class="page-hero-icon page-hero-icon--3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-7 4 14 2-7h8"/></svg></span>
+    <span class="page-hero-icon page-hero-icon--4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg></span>
+    <span class="page-hero-icon page-hero-icon--5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+  </div>
+  <svg class="page-hero-ecg" viewBox="0 0 1440 157" preserveAspectRatio="none" aria-hidden="true">
+    <path class="ecg-track" transform="translate(-283.58,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+    <path class="ecg-track" transform="translate(0.0,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+    <path class="ecg-track" transform="translate(283.58,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+    <path class="ecg-track" transform="translate(567.16,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+    <path class="ecg-track" transform="translate(850.74,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+    <path class="ecg-track" transform="translate(1134.32,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+    <path class="ecg-track" transform="translate(1417.9,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+    <path class="ecg-pulse pulse-travel" transform="translate(-283.58,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+    <path class="ecg-pulse pulse-travel" transform="translate(0.0,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+    <path class="ecg-pulse pulse-travel" transform="translate(283.58,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+    <path class="ecg-pulse pulse-travel" transform="translate(567.16,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+    <path class="ecg-pulse pulse-travel" transform="translate(850.74,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+    <path class="ecg-pulse pulse-travel" transform="translate(1134.32,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+    <path class="ecg-pulse pulse-travel" transform="translate(1417.9,0)" d="M35.76,99.12 C35.76,99.12 83.51,99.12 93.07,99.12 C97.53,99.12 107.08,87.62 110.93,87.62 C116.32,87.62 119.1,99 123.1,99.5 C127.11,100 131.73,99.5 134.04,99.5 C142.2,99.5 145.13,112.12 146.36,111.62 C150.64,109.89 150.52,13.88 153.76,13.88 C157.7,13.88 158.32,120.6 161.3,125 C163,127.5 166.45,111.11 167.5,106.75 C168.88,101 173.38,99.38 186.12,99.38 C197.37,99.38 198.43,99.38 203.05,99.38 C207.67,99.38 216.29,92.75 223.38,88 C230.47,83.25 235.03,80.02 240.32,84 C246.64,88.75 256.04,97.88 259.73,99.88 C263.43,101.88 268.2,102.12 273.13,99 C277.52,96.22 281.05,98.18 283.45,100.12 C286.61,102.69 297.01,101 319.34,101"/>
+  </svg>
+  <div class="wrap">
+    <span class="eyebrow section-tag">Health Insights</span>
+    <h1 class="h1" data-split="words" data-split-auto="true">Notes from the people who treat you.</h1>
+    <p class="lede" data-animate="fade-up">Straightforward explainers from our specialists — what your results mean, when to actually worry, and what's worth doing today.</p>
+  </div>
+</section>
+
+<!-- 02 — FEATURED ARTICLE -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="featured-article card card-spotlight" style="padding: clamp(20px,3vw,32px);">
+      <div class="featured-article-visual" data-animate="mask-reveal" data-mask-dir="left">
+        <div class="ph-visual bg-photo" style="background-image:url('assets/images/blog1.webp');"></div>
+      </div>
+      <div class="featured-article-copy" data-animate="fade-up">
+        <span class="blog-cat">Emergency Care</span>
+        <h2 class="h2">Inside our ER: what actually happens in the first 8 minutes.</h2>
+        <p class="lede">A walkthrough of digital triage, why "arrival time" isn't the number that matters, and what our trauma team does before a patient's name is even in the system.</p>
+        <div class="featured-article-meta">
+          <div class="avatar-initials avatar-initials--sm">DM</div>
+          <div>
+            <div class="featured-article-author">Dr. Diane Moss, Emergency Medicine</div>
+            <div class="featured-article-date">August 18, 2026 · 6 min read</div>
+          </div>
+        </div>
+        <a href="#" class="blog-more" style="margin-top:22px;">Read the full story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 — CATEGORY FILTER + 04 — BLOG BENTO GRID -->
+<section class="section" id="articles">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow section-tag">All articles</span>
+        <h2 class="h2">Browse by department.</h2>
+      </div>
+    </div>
+
+    <div class="filter-bar" data-filter-target="#blog-grid">
+      <button class="filter-pill is-active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="cardiology">Cardiology</button>
+      <button class="filter-pill" data-filter="pediatrics">Pediatrics</button>
+      <button class="filter-pill" data-filter="neurology">Neurology</button>
+      <button class="filter-pill" data-filter="nutrition">Nutrition</button>
+      <button class="filter-pill" data-filter="wellness">Wellness</button>
+    </div>
+
+    <div class="blog-bento" id="blog-grid" data-stagger-group>
+      <a href="#" class="blog-card" data-category="cardiology" data-stagger-item>
+        <div class="blog-img"><div class="ph-visual"></div><span class="blog-cat">Cardiology</span></div>
+        <div class="blog-body">
+          <span class="blog-date">Aug 14, 2026</span>
+          <div class="blog-title">Five early warning signs your heart is asking for attention</div>
+          <span class="blog-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="#" class="blog-card" data-category="pediatrics" data-stagger-item>
+        <div class="blog-img"><div class="ph-visual ph-visual--light"></div><span class="blog-cat">Pediatrics</span></div>
+        <div class="blog-body">
+          <span class="blog-date">Aug 08, 2026</span>
+          <div class="blog-title">Building a vaccination schedule that actually sticks</div>
+          <span class="blog-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="#" class="blog-card" data-category="nutrition" data-stagger-item>
+        <div class="blog-img"><div class="ph-visual"></div><span class="blog-cat">Nutrition</span></div>
+        <div class="blog-body">
+          <span class="blog-date">Jul 30, 2026</span>
+          <div class="blog-title">What your bloodwork actually tells you about diet</div>
+          <span class="blog-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="#" class="blog-card" data-category="neurology" data-stagger-item>
+        <div class="blog-img"><div class="ph-visual ph-visual--light"></div><span class="blog-cat">Neurology</span></div>
+        <div class="blog-body">
+          <span class="blog-date">Jul 22, 2026</span>
+          <div class="blog-title">Migraines vs. headaches: when it's time to see a neurologist</div>
+          <span class="blog-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="#" class="blog-card" data-category="wellness" data-stagger-item>
+        <div class="blog-img"><div class="ph-visual"></div><span class="blog-cat">Wellness</span></div>
+        <div class="blog-body">
+          <span class="blog-date">Jul 15, 2026</span>
+          <div class="blog-title">The 10-minute daily habit that actually lowers blood pressure</div>
+          <span class="blog-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="#" class="blog-card" data-category="pediatrics" data-stagger-item>
+        <div class="blog-img"><div class="ph-visual ph-visual--light"></div><span class="blog-cat">Pediatrics</span></div>
+        <div class="blog-body">
+          <span class="blog-date">Jul 08, 2026</span>
+          <div class="blog-title">Reading a pediatric growth chart without panicking</div>
+          <span class="blog-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="#" class="blog-card" data-category="nutrition" data-stagger-item>
+        <div class="blog-img"><div class="ph-visual"></div><span class="blog-cat">Nutrition</span></div>
+        <div class="blog-body">
+          <span class="blog-date">Jun 30, 2026</span>
+          <div class="blog-title">Protein, fiber, and the diet myths worth ignoring</div>
+          <span class="blog-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="#" class="blog-card" data-category="cardiology" data-stagger-item>
+        <div class="blog-img"><div class="ph-visual ph-visual--light"></div><span class="blog-cat">Cardiology</span></div>
+        <div class="blog-body">
+          <span class="blog-date">Jun 20, 2026</span>
+          <div class="blog-title">What a stress test actually measures</div>
+          <span class="blog-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+      <a href="#" class="blog-card" data-category="neurology" data-stagger-item>
+        <div class="blog-img"><div class="ph-visual"></div><span class="blog-cat">Neurology</span></div>
+        <div class="blog-body">
+          <span class="blog-date">Jun 10, 2026</span>
+          <div class="blog-title">Sleep, screens, and the neurology of a bad night's rest</div>
+          <span class="blog-more">Read more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 05 — HORIZONTAL ARTICLE SECTION (Trending) -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow section-tag">Trending this week</span>
+        <h2 class="h2">What patients are reading right now.</h2>
+      </div>
+    </div>
+    <div class="article-strip">
+      <a href="#" class="blog-card article-strip-card">
+        <div class="blog-img"><div class="ph-visual"></div><span class="blog-cat">Cardiology</span></div>
+        <div class="blog-body"><span class="blog-date">Aug 14, 2026</span><div class="blog-title">Five early warning signs your heart is asking for attention</div></div>
+      </a>
+      <a href="#" class="blog-card article-strip-card">
+        <div class="blog-img"><div class="ph-visual ph-visual--light"></div><span class="blog-cat">Wellness</span></div>
+        <div class="blog-body"><span class="blog-date">Jul 15, 2026</span><div class="blog-title">The 10-minute daily habit that actually lowers blood pressure</div></div>
+      </a>
+      <a href="#" class="blog-card article-strip-card">
+        <div class="blog-img"><div class="ph-visual"></div><span class="blog-cat">Neurology</span></div>
+        <div class="blog-body"><span class="blog-date">Jul 22, 2026</span><div class="blog-title">Migraines vs. headaches: when it's time to see a neurologist</div></div>
+      </a>
+      <a href="#" class="blog-card article-strip-card">
+        <div class="blog-img"><div class="ph-visual ph-visual--light"></div><span class="blog-cat">Nutrition</span></div>
+        <div class="blog-body"><span class="blog-date">Jul 30, 2026</span><div class="blog-title">What your bloodwork actually tells you about diet</div></div>
+      </a>
+      <a href="#" class="blog-card article-strip-card">
+        <div class="blog-img"><div class="ph-visual"></div><span class="blog-cat">Pediatrics</span></div>
+        <div class="blog-body"><span class="blog-date">Aug 08, 2026</span><div class="blog-title">Building a vaccination schedule that actually sticks</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 06 — POPULAR ARTICLES + 07 — HEALTH TIPS -->
+<section class="section">
+  <div class="wrap">
+    <div class="pair-grid" style="grid-template-columns: 1fr 1.2fr; align-items: start;">
+
+      <div>
+        <span class="eyebrow section-tag">Most read</span>
+        <h2 class="h2" style="margin-bottom:20px;">Popular articles.</h2>
+        <div class="popular-list">
+          <a href="#" class="popular-item">
+            <span class="popular-rank">01</span>
+            <span class="popular-thumb"><div class="ph-visual" style="width:100%;height:100%;"></div></span>
+            <span><span class="popular-cat">Cardiology</span><div class="popular-title">Five early warning signs your heart is asking for attention</div></span>
+          </a>
+          <a href="#" class="popular-item">
+            <span class="popular-rank">02</span>
+            <span class="popular-thumb"><div class="ph-visual ph-visual--light" style="width:100%;height:100%;"></div></span>
+            <span><span class="popular-cat">Wellness</span><div class="popular-title">The 10-minute daily habit that actually lowers blood pressure</div></span>
+          </a>
+          <a href="#" class="popular-item">
+            <span class="popular-rank">03</span>
+            <span class="popular-thumb"><div class="ph-visual" style="width:100%;height:100%;"></div></span>
+            <span><span class="popular-cat">Nutrition</span><div class="popular-title">What your bloodwork actually tells you about diet</div></span>
+          </a>
+          <a href="#" class="popular-item">
+            <span class="popular-rank">04</span>
+            <span class="popular-thumb"><div class="ph-visual ph-visual--light" style="width:100%;height:100%;"></div></span>
+            <span><span class="popular-cat">Neurology</span><div class="popular-title">Sleep, screens, and the neurology of a bad night's rest</div></span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <span class="eyebrow section-tag">Quick reads</span>
+        <h2 class="h2" style="margin-bottom:20px;">Health tips you can use today.</h2>
+        <div class="value-grid" style="grid-template-columns: 1fr 1fr;" data-stagger-group>
+          <div class="card card-spotlight feature-card" data-stagger-item>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7S6 8.5 6 13a6 6 0 0 0 12 0c0-4.5-6-10.3-6-10.3z"/></svg></div>
+            <p style="font-weight:600;">Drink a glass of water before your morning coffee.</p>
+          </div>
+          <div class="card card-spotlight feature-card" data-stagger-item>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4a4 4 0 1 1-4 4M9 8v13M5 21h8"/></svg></div>
+            <p style="font-weight:600;">A 10-minute walk after meals measurably helps digestion.</p>
+          </div>
+          <div class="card card-spotlight feature-card" data-stagger-item>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-7 4 14 2-7h8"/></svg></div>
+            <p style="font-weight:600;">Get blood pressure checked yearly once you're past 40.</p>
+          </div>
+          <div class="card card-spotlight feature-card" data-stagger-item>
+            <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <p style="font-weight:600;">Don't skip the flu shot — it's still your best defense.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 08 — NEWSLETTER -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="newsletter-box bg-photo-dark" style="background-image:url('assets/images/blog5.webp');">
+      <span class="eyebrow on-deep section-tag">Stay informed</span>
+      <h2 class="h2">Health notes, monthly — not daily.</h2>
+      <p class="lede">One short email a month from our specialists. No spam, unsubscribe anytime.</p>
+      <form id="newsletter-form" class="newsletter-form" novalidate>
+        <div class="field">
+          <input type="email" id="newsletter-email" name="email" placeholder="you@example.com" required>
+          <p class="field-msg" role="status" style="text-align:left;"></p>
+        </div>
+        <button type="submit" class="btn btn-primary magnetic-target">Subscribe</button>
+      </form>
+      <p class="newsletter-success" id="newsletter-success">You're subscribed — welcome aboard.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 — MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Cardiology</span><span>Pediatrics</span><span>Neurology</span><span>Nutrition</span><span>Wellness</span><span>Emergency Care</span>
+    <span>Cardiology</span><span>Pediatrics</span><span>Neurology</span><span>Nutrition</span><span>Wellness</span><span>Emergency Care</span>
+  </div>
+</div>
+
+<!-- 10 — CTA -->
+<section class="cta-final">
+  <svg class="cta-pulse-line" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-50,100 L400,100 L440,40 L480,160 L520,100 L900,100 L940,20 L980,180 L1020,100 L1500,100"/>
+  </svg>
+  <div class="wrap">
+    <span class="eyebrow section-tag">Have a question for a specialist?</span>
+    <h2 class="h1" data-animate="blur-reveal">Ask <span class="morph-word" data-morph="a cardiologist, a pediatrician, a neurologist, our team">a specialist</span> directly.</h2>
+    <div class="cta-final-actions">
+      <a href="contact.html" class="btn btn-primary magnetic-target">Contact Hospital</a>
+      <a href="create-account.html" class="btn btn-ghost magnetic-target">Book Appointment</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+  // Newsletter signup — self-contained since only this page needs it.
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('newsletter-form');
+    if(!form || !window.MeridianValidate) return;
+    const input = document.getElementById('newsletter-email');
+    const success = document.getElementById('newsletter-success');
+    MeridianValidate.bindForm(form, [
+      { input, validator: MeridianValidate.validateEmail }
+    ], () => {
+      form.style.display = 'none';
+      success.classList.add('is-visible');
+      if(window.gsap) gsap.fromTo(success, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .5 });
+    });
+  });
+</script>
+
+<!-- ============ FOOTER ============ -->
+<footer id="site-footer">
+  <div class="wrap">
+    <div class="footer-hero magnetic-target">CARE THAT MOVES WITH YOU.<span class="glow" aria-hidden="true"></span></div>
+
+    <div class="footer-bento">
+      <div class="footer-cell">
+        <a href="index.html" class="brand" style="margin-bottom:14px;">
+          <span class="brand-logo-chip"><img src="assets/logo/logo.webp" alt="Stackly" class="brand-logo-img"></span>
+        </a>
+        <p class="footer-desc">A connected network of specialists, diagnostics, and emergency care — built around one continuous pathway of treatment.</p>
+        <div class="footer-socials">
+          <a href="404.html" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="404.html" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 3h-2a5 5 0 0 0-5 5v3H6v4h2v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="404.html" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 13v4"/></svg></a>
+          <a href="404.html" class="social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="m10 9 5 3-5 3z"/></svg></a>
+          <a href="404.html" class="social-btn" aria-label="X / Twitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l16 16M20 4 4 20"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-cell">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-cell">
+        <h4>Departments</h4>
+        <ul>
+          <li><a href="404.html">Emergency Care</a></li>
+          <li><a href="404.html">Cardiology</a></li>
+          <li><a href="404.html">Neurology</a></li>
+          <li><a href="404.html">Pediatrics</a></li>
+          <li><a href="404.html">Diagnostics</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-cell">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+91 70107 92745">+91 70107 92745</a></li>
+          <li><a href="mailto:hr@stackly.com">hr@stackly.com</a></li>
+          <li><span class="mono-label" style="color:var(--ink-on-deep-soft)"> Suraksha Nagar, Yelenahalli, Begur,Bengaluru, Karnataka - 560068</span></li>
+          <li><span class="mono-label" style="color:var(--ink-on-deep-soft)">Mon–Sun, Emergency 24/7</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Meridian Health Network. All rights reserved.</span>
+      <span class="legal-links">
+        <a href="404.html">Privacy Policy</a>
+        <a href="404.html">Terms &amp; Conditions</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+</body>
+</html>

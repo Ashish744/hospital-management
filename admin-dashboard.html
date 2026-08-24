@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Console — Meridian Health</title>
+<meta name="description" content="Meridian Health administrator console — patients, doctors, appointments, departments, and reports.">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="dash-body">
+
+<!-- ============ PRELOADER (same theme as the rest of the site) ============ -->
+<div id="preloader" aria-hidden="true">
+  <div class="loader-wrap">
+    <div class="loader-bento">
+      <div class="loader-cell loader-cell--plus">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        <span class="label">Care</span>
+      </div>
+      <div class="loader-cell loader-cell--pulse">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-7 4 14 2-7h8"/></svg>
+        <span class="label">Vitals</span>
+      </div>
+      <div class="loader-cell loader-cell--heart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.9-10-9.3C.4 8.2 2 4.5 5.6 4c2-.3 3.8.7 4.4 2.4C10.6 4.7 12.4 3.7 14.4 4c3.6.5 5.2 4.2 3.6 7.7C15.5 16.1 12 21 12 21z"/></svg>
+        <span class="label">Care</span>
+      </div>
+      <div class="loader-cell loader-cell--care">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <span class="label">24 / 7</span>
+      </div>
+    </div>
+    <div class="loader-percent-row">
+      <span>Admin Console</span>
+      <span><span class="loader-percent-value">0</span>%</span>
+    </div>
+    <div class="loader-progress-track"><div class="loader-progress-fill"></div></div>
+  </div>
+</div>
+
+<div id="page-transition" style="position:fixed;inset:0;z-index:9997;background:var(--bg-deep);display:none;align-items:center;justify-content:center;"></div>
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+<div class="sidebar-backdrop"></div>
+
+<!-- ============ TOP BAR — logo left, profile right, no public nav ============ -->
+<header class="dash-topbar">
+  <div class="dash-topbar-left">
+    <button class="sidebar-toggle" aria-label="Toggle sidebar">
+      <span class="bars"><span></span><span></span><span></span></span>
+    </button>
+    <a href="index.html" class="brand magnetic-target">
+      <span class="brand-logo-chip"><img src="assets/logo/logo.webp" alt="Stackly" class="brand-logo-img"></span>
+    </a>
+    <!-- <div class="dash-topbar-title">Admin Console<small>Meridian Health Network</small></div> -->
+  </div>
+  <div class="dash-topbar-right">
+    <button class="icon-btn" aria-label="Notifications">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+      <span class="dot"></span>
+    </button>
+    <div class="profile-widget">
+      <button class="profile-trigger">
+        <span class="avatar-initials">JD</span>
+        <span class="profile-trigger-name">Jordan Diaz<span class="profile-trigger-role">Administrator</span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="profile-panel">
+        <div class="profile-panel-head">
+          <span class="avatar-initials">JD</span>
+          <div>
+            <div class="profile-panel-name">Jordan Diaz</div>
+            <div class="profile-panel-email">jordan.diaz@meridianhealth.example</div>
+            <span class="profile-panel-badge">Administrator</span>
+          </div>
+        </div>
+        <a href="#" class="profile-menu-item" onclick="document.querySelector('[data-panel=&quot;settings&quot;]').click(); return false;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+          Settings
+        </a>
+        <a href="index.html" class="profile-menu-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12 12 4l9 8"/><path d="M5 10v10h14V10"/></svg>
+          View public site
+        </a>
+        <button type="button" class="profile-menu-item profile-menu-item--danger" data-logout>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+          Log out
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="dash-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="dash-sidebar">
+    <span class="sidebar-label">Menu</span>
+    <nav class="sidebar-nav">
+      <a href="#overview" class="sidebar-link is-active" data-panel="overview" data-title="Overview" data-subtitle="A snapshot of today across the network.">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+        Overview
+      </a>
+      <a href="#patients" class="sidebar-link" data-panel="patients" data-title="Patient Management" data-subtitle="Search, review, and manage patient records.">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>
+        Patients
+      </a>
+      <a href="#doctors" class="sidebar-link" data-panel="doctors" data-title="Doctor Management" data-subtitle="Specialists across every department.">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3a3 3 0 0 1 3 3v1a3 3 0 0 1 3 3 3 3 0 0 1-1 5.6V19a2 2 0 0 1-4 0v-2M9.5 3a3 3 0 0 0-3 3v10a2 2 0 0 0 4 0"/></svg>
+        Doctors
+      </a>
+      <a href="#appointments" class="sidebar-link" data-panel="appointments" data-title="Appointments" data-subtitle="Today's schedule across all departments.">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>
+        Appointments <span class="badge">12</span>
+      </a>
+      <a href="#departments" class="sidebar-link" data-panel="departments" data-title="Departments" data-subtitle="Capacity and staffing by department.">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Departments
+      </a>
+      <a href="#beds" class="sidebar-link" data-panel="beds" data-title="Bed Management" data-subtitle="Live occupancy across every ward.">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4M2 19v-6a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v6M2 19v2M22 19v2M12 11h9"/></svg>
+        Beds
+      </a>
+      <a href="#messages" class="sidebar-link" data-panel="messages" data-title="Messages" data-subtitle="Direct messages from patients and staff.">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Messages <span class="badge">3</span>
+      </a>
+      <a href="#notifications" class="sidebar-link" data-panel="notifications" data-title="Notifications" data-subtitle="Everything that needs your attention.">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        Notifications <span class="badge">5</span>
+      </a>
+    </nav>
+
+    <span class="sidebar-label">Administration</span>
+    <nav class="sidebar-nav">
+      <a href="#pharmacy" class="sidebar-link" data-panel="pharmacy" data-title="Pharmacy" data-subtitle="Inventory, stock levels, and refill requests.">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg>
+        Pharmacy
+      </a>
+      <a href="#billing" class="sidebar-link" data-panel="billing" data-title="Billing &amp; Invoices" data-subtitle="Outstanding balances and payment history.">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Billing
+      </a>
+      <a href="#staff" class="sidebar-link" data-panel="staff" data-title="Staff &amp; HR" data-subtitle="Shifts, roles, and staffing across the network.">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 20v-1a5 5 0 0 1 10 0v1"/></svg>
+        Staff
+      </a>
+      <a href="#reports" class="sidebar-link" data-panel="reports" data-title="Reports" data-subtitle="Network performance and downloadable reports.">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM4 9h16M9 21V9"/></svg>
+        Reports
+      </a>
+      <a href="#settings" class="sidebar-link" data-panel="settings" data-title="Settings" data-subtitle="Account and notification preferences.">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-foot">
+      <span class="sidebar-foot-label">Emergency</span>
+      <a href="tel:+19110000000" class="btn btn-primary">Call</a>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="dash-main">
+    <div class="dash-head">
+      <div>
+        <h1 data-dash-title>Overview</h1>
+        <p data-dash-subtitle>A snapshot of today across the network.</p>
+      </div>
+      <a href="create-account.html" class="btn btn-primary magnetic-target">+ New Patient</a>
+    </div>
+
+    <!-- ===================== OVERVIEW ===================== -->
+    <section id="overview" class="dash-panel is-active">
+
+      <div class="dash-stats" data-dash-stagger>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span>
+            <span class="dash-trend dash-trend--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15 12 9l-6 6"/></svg> 4.2%</span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="50482">0</div>
+          <div class="dash-stat-label">Total Patients</div>
+        </div>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3a3 3 0 0 1 3 3v1a3 3 0 0 1 3 3 3 3 0 0 1-1 5.6V19a2 2 0 0 1-4 0v-2M9.5 3a3 3 0 0 0-3 3v10a2 2 0 0 0 4 0"/></svg></span>
+            <span class="dash-trend dash-trend--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15 12 9l-6 6"/></svg> 1.1%</span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="152">0</div>
+          <div class="dash-stat-label">Doctors &amp; Specialists</div>
+        </div>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></span>
+            <span class="dash-trend dash-trend--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15 12 9l-6 6"/></svg> 8.6%</span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="184">0</div>
+          <div class="dash-stat-label">Appointments Today</div>
+        </div>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+            <span class="dash-trend dash-trend--down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg> 1.8%</span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="482" data-prefix="$" data-suffix="K">0</div>
+          <div class="dash-stat-label">Revenue (Month to Date)</div>
+        </div>
+      </div>
+
+      <div class="chart-row">
+        <div class="card chart-card">
+          <div class="chart-card-head"><h3>Appointments this week</h3><span class="mono-label">Mon – Sun</span></div>
+          <svg class="line-chart" viewBox="0 0 560 200" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1C9C8F" stop-opacity="0.5"/>
+                <stop offset="100%" stop-color="#1C9C8F" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path class="area" d="M0,150 L80,120 L160,138 L240,80 L320,102 L400,58 L480,90 L560,46 L560,200 L0,200 Z"/>
+            <path class="line" d="M0,150 L80,120 L160,138 L240,80 L320,102 L400,58 L480,90 L560,46"/>
+            <circle cx="0" cy="150" r="4"/><circle cx="80" cy="120" r="4"/><circle cx="160" cy="138" r="4"/><circle cx="240" cy="80" r="4"/>
+            <circle cx="320" cy="102" r="4"/><circle cx="400" cy="58" r="4"/><circle cx="480" cy="90" r="4"/><circle cx="560" cy="46" r="4"/>
+          </svg>
+          <div class="line-chart-labels"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+        </div>
+
+        <div class="card chart-card">
+          <div class="chart-card-head"><h3>Bed Occupancy</h3></div>
+          <div class="donut-wrap">
+            <svg class="donut-chart" viewBox="0 0 130 130">
+              <circle class="donut-track" cx="65" cy="65" r="52"/>
+              <circle class="donut-value" data-percent="78" cx="65" cy="65" r="52"/>
+              <text x="65" y="61" text-anchor="middle" class="donut-center-text">78%</text>
+              <text x="65" y="78" text-anchor="middle" class="donut-center-sub">OCCUPIED</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-row" style="grid-template-columns:1fr;">
+        <div class="card chart-card">
+          <div class="chart-card-head"><h3>Patient volume by department</h3><span class="mono-label">This month</span></div>
+          <div class="bar-chart">
+            <div class="bar-col"><div class="bar" data-value="72"></div><span class="bar-label">Cardio</span></div>
+            <div class="bar-col"><div class="bar" data-value="54"></div><span class="bar-label">Neuro</span></div>
+            <div class="bar-col"><div class="bar" data-value="88"></div><span class="bar-label">Peds</span></div>
+            <div class="bar-col"><div class="bar" data-value="46"></div><span class="bar-label">Ortho</span></div>
+            <div class="bar-col"><div class="bar" data-value="95"></div><span class="bar-label">ER</span></div>
+            <div class="bar-col"><div class="bar" data-value="38"></div><span class="bar-label">Onc</span></div>
+            <div class="bar-col"><div class="bar" data-value="61"></div><span class="bar-label">Derm</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-panels">
+        <div class="card" style="padding:24px;">
+          <div class="section-title-row"><h3>Recent activity</h3></div>
+          <div class="activity-list">
+            <div class="activity-item">
+              <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <div><div class="activity-text"><b>Dr. Amara Chen</b> completed a cardiology consult</div><div class="activity-time">12 minutes ago</div></div>
+            </div>
+            <div class="activity-item">
+              <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></span>
+              <div><div class="activity-text"><b>Nina Park</b> booked an appointment with Neurology</div><div class="activity-time">38 minutes ago</div></div>
+            </div>
+            <div class="activity-item">
+              <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+              <div><div class="activity-text">Lab results uploaded for <b>David Osei</b></div><div class="activity-time">1 hour ago</div></div>
+            </div>
+            <div class="activity-item">
+              <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.9-10-9.3C.4 8.2 2 4.5 5.6 4c2-.3 3.8.7 4.4 2.4C10.6 4.7 12.4 3.7 14.4 4c3.6.5 5.2 4.2 3.6 7.7C15.5 16.1 12 21 12 21z"/></svg></span>
+              <div><div class="activity-text"><b>Dr. Elena Fischer</b> updated a pediatric care plan</div><div class="activity-time">2 hours ago</div></div>
+            </div>
+            <div class="activity-item">
+              <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>
+              <div><div class="activity-text">New patient <b>Priya Sharma</b> registered</div><div class="activity-time">3 hours ago</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:24px;">
+          <div class="section-title-row"><h3>Notifications</h3></div>
+          <div class="notif-list">
+            <div class="notif-item is-unread">
+              <span class="activity-dot" style="background:var(--coral-soft); color:var(--coral-deep);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></span>
+              <div><div class="activity-text">ER capacity at <b>95%</b> — consider overflow staffing</div><div class="activity-time">10 minutes ago</div></div>
+            </div>
+            <div class="notif-item is-unread">
+              <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span>
+              <div><div class="activity-text">3 telehealth consults scheduled for this afternoon</div><div class="activity-time">44 minutes ago</div></div>
+            </div>
+            <div class="notif-item">
+              <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg></span>
+              <div><div class="activity-text">Pharmacy inventory sync completed</div><div class="activity-time">1 hour ago</div></div>
+            </div>
+            <div class="notif-item">
+              <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM4 9h16M9 21V9"/></svg></span>
+              <div><div class="activity-text">Weekly performance report is ready to view</div><div class="activity-time">Today, 7:00 AM</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:24px; margin-top:16px;">
+        <div class="section-title-row"><h3>Today's appointments</h3><button type="button" class="btn btn-ghost" style="padding:8px 16px;font-size:.8rem;" onclick="document.querySelector('[data-panel=&quot;appointments&quot;]').click();">View all</button></div>
+        <div class="dash-table-wrap">
+          <table class="dash-table">
+            <thead><tr><th>Patient</th><th>Doctor</th><th>Department</th><th>Time</th><th>Status</th><th></th></tr></thead>
+            <tbody>
+              <tr>
+                <td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">NP</span><div><div class="table-person-name">Nina Park</div><div class="table-person-sub">Patient #4021</div></div></div></td>
+                <td>Dr. Amara Chen</td><td>Cardiology</td><td>9:30 AM</td>
+                <td><span class="status-pill status-pill--success">Confirmed</span></td>
+                <td><button class="row-action" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+              </tr>
+              <tr>
+                <td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">DO</span><div><div class="table-person-name">David Osei</div><div class="table-person-sub">Patient #3894</div></div></div></td>
+                <td>Dr. Rohan Mehta</td><td>Neurology</td><td>10:15 AM</td>
+                <td><span class="status-pill status-pill--pending">Pending</span></td>
+                <td><button class="row-action" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+              </tr>
+              <tr>
+                <td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">JL</span><div><div class="table-person-name">Jamie Lin</div><div class="table-person-sub">Patient #4102</div></div></div></td>
+                <td>Dr. Elena Fischer</td><td>Pediatrics</td><td>11:00 AM</td>
+                <td><span class="status-pill status-pill--success">Confirmed</span></td>
+                <td><button class="row-action" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+              </tr>
+              <tr>
+                <td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">MW</span><div><div class="table-person-name">Marcus Webb Jr.</div><div class="table-person-sub">Patient #3720</div></div></div></td>
+                <td>Dr. Marcus Webb</td><td>Orthopedics</td><td>1:30 PM</td>
+                <td><span class="status-pill status-pill--danger">Cancelled</span></td>
+                <td><button class="row-action" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+              </tr>
+              <tr>
+                <td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">PS</span><div><div class="table-person-name">Priya Sharma</div><div class="table-person-sub">Patient #4180</div></div></div></td>
+                <td>Dr. Amara Chen</td><td>Cardiology</td><td>2:45 PM</td>
+                <td><span class="status-pill status-pill--success">Confirmed</span></td>
+                <td><button class="row-action" aria-label="More"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="dash-stats" style="grid-template-columns: repeat(4, 1fr); margin-top:16px;" data-dash-stagger>
+        <div class="card" style="padding:20px;">
+          <div class="dept-name">Cardiology</div>
+          <div class="dept-sub" style="margin-bottom:10px;">72 patients this month</div>
+          <div class="bar-chart" style="height:40px;"><div class="bar-col"><div class="bar" data-value="72" style="background:var(--teal-deep);"></div></div></div>
+        </div>
+        <div class="card" style="padding:20px;">
+          <div class="dept-name">Emergency</div>
+          <div class="dept-sub" style="margin-bottom:10px;">95 patients this month</div>
+          <div class="bar-chart" style="height:40px;"><div class="bar-col"><div class="bar" data-value="95" style="background:var(--coral);"></div></div></div>
+        </div>
+        <div class="card" style="padding:20px;">
+          <div class="dept-name">Pediatrics</div>
+          <div class="dept-sub" style="margin-bottom:10px;">88 patients this month</div>
+          <div class="bar-chart" style="height:40px;"><div class="bar-col"><div class="bar" data-value="88" style="background:var(--teal-bright);"></div></div></div>
+        </div>
+        <div class="card" style="padding:20px;">
+          <div class="dept-name">Neurology</div>
+          <div class="dept-sub" style="margin-bottom:10px;">54 patients this month</div>
+          <div class="bar-chart" style="height:40px;"><div class="bar-col"><div class="bar" data-value="54" style="background:var(--teal-deep);"></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PATIENTS ===================== -->
+    <section id="patients" class="dash-panel">
+      <div class="card" style="padding:24px;">
+        <div class="section-title-row">
+          <h3>All patients</h3>
+          <div class="field" style="margin-bottom:0; width: 260px;">
+            <input type="text" data-table-search="#patients-table" placeholder="Search by name…">
+          </div>
+        </div>
+        <div class="dash-table-wrap">
+          <table class="dash-table" id="patients-table">
+            <thead><tr><th>Patient</th><th>Age</th><th>Department</th><th>Last Visit</th><th>Status</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">NP</span><div><div class="table-person-name">Nina Park</div><div class="table-person-sub">Patient #4021</div></div></div></td><td>34</td><td>Cardiology</td><td>Aug 14, 2026</td><td><span class="status-pill status-pill--success">Active</span></td><td><button class="row-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td></tr>
+              <tr><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">DO</span><div><div class="table-person-name">David Osei</div><div class="table-person-sub">Patient #3894</div></div></div></td><td>41</td><td>Neurology</td><td>Aug 12, 2026</td><td><span class="status-pill status-pill--pending">Follow-up</span></td><td><button class="row-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td></tr>
+              <tr><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">JL</span><div><div class="table-person-name">Jamie Lin</div><div class="table-person-sub">Patient #4102</div></div></div></td><td>8</td><td>Pediatrics</td><td>Aug 10, 2026</td><td><span class="status-pill status-pill--success">Active</span></td><td><button class="row-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td></tr>
+              <tr><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">MW</span><div><div class="table-person-name">Marcus Webb Jr.</div><div class="table-person-sub">Patient #3720</div></div></div></td><td>52</td><td>Orthopedics</td><td>Jul 30, 2026</td><td><span class="status-pill status-pill--pending">Follow-up</span></td><td><button class="row-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td></tr>
+              <tr><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">PS</span><div><div class="table-person-name">Priya Sharma</div><div class="table-person-sub">Patient #4180</div></div></div></td><td>29</td><td>Cardiology</td><td>Aug 18, 2026</td><td><span class="status-pill status-pill--success">Active</span></td><td><button class="row-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td></tr>
+              <tr><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">TB</span><div><div class="table-person-name">Tobias Brandt</div><div class="table-person-sub">Patient #2951</div></div></div></td><td>46</td><td>Dermatology</td><td>Jul 22, 2026</td><td><span class="status-pill status-pill--danger">Discharged</span></td><td><button class="row-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td></tr>
+              <tr><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">SK</span><div><div class="table-person-name">Sarah Kim</div><div class="table-person-sub">Patient #4207</div></div></div></td><td>37</td><td>Oncology</td><td>Aug 15, 2026</td><td><span class="status-pill status-pill--success">Active</span></td><td><button class="row-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td></tr>
+              <tr><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">AR</span><div><div class="table-person-name">Aidan Reyes</div><div class="table-person-sub">Patient #3468</div></div></div></td><td>19</td><td>ENT</td><td>Jun 28, 2026</td><td><span class="status-pill status-pill--danger">Discharged</span></td><td><button class="row-action"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DOCTORS ===================== -->
+    <section id="doctors" class="dash-panel">
+      <div class="dash-stats" style="grid-template-columns: repeat(3, 1fr);" data-dash-stagger>
+        <div class="mini-doctor-card card">
+          <div class="avatar-initials">AC</div>
+          <div class="name">Dr. Amara Chen</div>
+          <div class="spec">Cardiology</div>
+          <div class="stat-row"><div><b>412</b><span>Patients</span></div><div><b>4.9</b><span>Rating</span></div></div>
+          <span class="status-pill status-pill--success" style="margin-top:14px;">Active</span>
+        </div>
+        <div class="mini-doctor-card card">
+          <div class="avatar-initials">RM</div>
+          <div class="name">Dr. Rohan Mehta</div>
+          <div class="spec">Neurology</div>
+          <div class="stat-row"><div><b>298</b><span>Patients</span></div><div><b>4.8</b><span>Rating</span></div></div>
+          <span class="status-pill status-pill--success" style="margin-top:14px;">Active</span>
+        </div>
+        <div class="mini-doctor-card card">
+          <div class="avatar-initials">EF</div>
+          <div class="name">Dr. Elena Fischer</div>
+          <div class="spec">Pediatrics</div>
+          <div class="stat-row"><div><b>531</b><span>Patients</span></div><div><b>5.0</b><span>Rating</span></div></div>
+          <span class="status-pill status-pill--success" style="margin-top:14px;">Active</span>
+        </div>
+        <div class="mini-doctor-card card">
+          <div class="avatar-initials">MW</div>
+          <div class="name">Dr. Marcus Webb</div>
+          <div class="spec">Orthopedics</div>
+          <div class="stat-row"><div><b>367</b><span>Patients</span></div><div><b>4.7</b><span>Rating</span></div></div>
+          <span class="status-pill status-pill--pending" style="margin-top:14px;">On Leave</span>
+        </div>
+        <div class="mini-doctor-card card">
+          <div class="avatar-initials">PN</div>
+          <div class="name">Dr. Priya Nair</div>
+          <div class="spec">Oncology</div>
+          <div class="stat-row"><div><b>204</b><span>Patients</span></div><div><b>4.9</b><span>Rating</span></div></div>
+          <span class="status-pill status-pill--success" style="margin-top:14px;">Active</span>
+        </div>
+        <div class="mini-doctor-card card">
+          <div class="avatar-initials">LO</div>
+          <div class="name">Dr. Liam O'Connor</div>
+          <div class="spec">Dermatology</div>
+          <div class="stat-row"><div><b>289</b><span>Patients</span></div><div><b>4.6</b><span>Rating</span></div></div>
+          <span class="status-pill status-pill--success" style="margin-top:14px;">Active</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== APPOINTMENTS ===================== -->
+    <section id="appointments" class="dash-panel">
+      <div class="card" style="padding:24px;">
+        <div class="section-title-row"><h3>All appointments</h3></div>
+        <div class="filter-bar" data-filter-target="#appt-table" style="margin-bottom:20px;">
+          <button class="filter-pill is-active" data-filter="all">All</button>
+          <button class="filter-pill" data-filter="confirmed">Confirmed</button>
+          <button class="filter-pill" data-filter="pending">Pending</button>
+          <button class="filter-pill" data-filter="cancelled">Cancelled</button>
+        </div>
+        <div class="dash-table-wrap">
+          <table class="dash-table" id="appt-table">
+            <thead><tr><th>Patient</th><th>Doctor</th><th>Department</th><th>Date</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr data-category="confirmed"><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">NP</span><div class="table-person-name">Nina Park</div></div></td><td>Dr. Amara Chen</td><td>Cardiology</td><td>Aug 21, 9:30 AM</td><td><span class="status-pill status-pill--success">Confirmed</span></td></tr>
+              <tr data-category="pending"><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">DO</span><div class="table-person-name">David Osei</div></div></td><td>Dr. Rohan Mehta</td><td>Neurology</td><td>Aug 21, 10:15 AM</td><td><span class="status-pill status-pill--pending">Pending</span></td></tr>
+              <tr data-category="confirmed"><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">JL</span><div class="table-person-name">Jamie Lin</div></div></td><td>Dr. Elena Fischer</td><td>Pediatrics</td><td>Aug 21, 11:00 AM</td><td><span class="status-pill status-pill--success">Confirmed</span></td></tr>
+              <tr data-category="cancelled"><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">MW</span><div class="table-person-name">Marcus Webb Jr.</div></div></td><td>Dr. Marcus Webb</td><td>Orthopedics</td><td>Aug 21, 1:30 PM</td><td><span class="status-pill status-pill--danger">Cancelled</span></td></tr>
+              <tr data-category="confirmed"><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">PS</span><div class="table-person-name">Priya Sharma</div></div></td><td>Dr. Amara Chen</td><td>Cardiology</td><td>Aug 21, 2:45 PM</td><td><span class="status-pill status-pill--success">Confirmed</span></td></tr>
+              <tr data-category="pending"><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">SK</span><div class="table-person-name">Sarah Kim</div></div></td><td>Dr. Priya Nair</td><td>Oncology</td><td>Aug 22, 9:00 AM</td><td><span class="status-pill status-pill--pending">Pending</span></td></tr>
+              <tr data-category="cancelled"><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">AR</span><div class="table-person-name">Aidan Reyes</div></div></td><td>Dr. Liam O'Connor</td><td>Dermatology</td><td>Aug 20, 3:15 PM</td><td><span class="status-pill status-pill--danger">Cancelled</span></td></tr>
+              <tr data-category="confirmed"><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">TB</span><div class="table-person-name">Tobias Brandt</div></div></td><td>Dr. Liam O'Connor</td><td>Dermatology</td><td>Aug 22, 11:30 AM</td><td><span class="status-pill status-pill--success">Confirmed</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DEPARTMENTS ===================== -->
+    <section id="departments" class="dash-panel">
+      <div class="chart-row">
+        <div class="card chart-card" style="grid-column: span 2;">
+          <div class="chart-card-head"><h3>Capacity by department</h3></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;" data-dash-stagger>
+            <div class="dept-progress-card card">
+              <div class="dept-progress-head"><span style="font-weight:700;">Cardiology</span><span class="mono-label">82%</span></div>
+              <div class="dept-progress-track"><div class="dept-progress-fill" data-value="82"></div></div>
+              <div class="dept-progress-meta"><span>14 doctors</span><span>412 patients</span></div>
+            </div>
+            <div class="dept-progress-card card">
+              <div class="dept-progress-head"><span style="font-weight:700;">Neurology</span><span class="mono-label">64%</span></div>
+              <div class="dept-progress-track"><div class="dept-progress-fill" data-value="64"></div></div>
+              <div class="dept-progress-meta"><span>9 doctors</span><span>298 patients</span></div>
+            </div>
+            <div class="dept-progress-card card">
+              <div class="dept-progress-head"><span style="font-weight:700;">Pediatrics</span><span class="mono-label">91%</span></div>
+              <div class="dept-progress-track"><div class="dept-progress-fill" data-value="91"></div></div>
+              <div class="dept-progress-meta"><span>18 doctors</span><span>531 patients</span></div>
+            </div>
+            <div class="dept-progress-card card">
+              <div class="dept-progress-head"><span style="font-weight:700;">Orthopedics</span><span class="mono-label">58%</span></div>
+              <div class="dept-progress-track"><div class="dept-progress-fill" data-value="58"></div></div>
+              <div class="dept-progress-meta"><span>11 doctors</span><span>367 patients</span></div>
+            </div>
+            <div class="dept-progress-card card">
+              <div class="dept-progress-head"><span style="font-weight:700;">Emergency</span><span class="mono-label">95%</span></div>
+              <div class="dept-progress-track"><div class="dept-progress-fill" data-value="95"></div></div>
+              <div class="dept-progress-meta"><span>22 doctors</span><span>Walk-in, 24/7</span></div>
+            </div>
+            <div class="dept-progress-card card">
+              <div class="dept-progress-head"><span style="font-weight:700;">Oncology</span><span class="mono-label">47%</span></div>
+              <div class="dept-progress-track"><div class="dept-progress-fill" data-value="47"></div></div>
+              <div class="dept-progress-meta"><span>7 doctors</span><span>204 patients</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <div class="chart-card-head"><h3>Patient share</h3></div>
+          <div class="donut-wrap" style="flex-direction:column;">
+            <svg class="donut-chart" viewBox="0 0 130 130">
+              <circle class="donut-track" cx="65" cy="65" r="52"/>
+              <circle class="donut-value" data-percent="34" cx="65" cy="65" r="52" style="stroke:var(--teal-deep);"/>
+              <text x="65" y="61" text-anchor="middle" class="donut-center-text">34%</text>
+              <text x="65" y="78" text-anchor="middle" class="donut-center-sub">TOP DEPT.</text>
+            </svg>
+            <div class="donut-legend">
+              <div class="donut-legend-item"><span class="donut-dot" style="background:var(--teal-deep);"></span> Pediatrics — 34%</div>
+              <div class="donut-legend-item"><span class="donut-dot" style="background:var(--teal-bright);"></span> Cardiology — 26%</div>
+              <div class="donut-legend-item"><span class="donut-dot" style="background:var(--mint);"></span> Neurology — 19%</div>
+              <div class="donut-legend-item"><span class="donut-dot" style="background:var(--line);"></span> Other — 21%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== BEDS ===================== -->
+    <section id="beds" class="dash-panel">
+      <div class="dash-stats" data-dash-stagger>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4M2 19v-6a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v6M2 19v2M22 19v2M12 11h9"/></svg></span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="412">0</div>
+          <div class="dash-stat-label">Total beds</div>
+        </div>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="356">0</div>
+          <div class="dash-stat-label">Occupied</div>
+        </div>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="56">0</div>
+          <div class="dash-stat-label">Available now</div>
+        </div>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.9-10-9.3C.4 8.2 2 4.5 5.6 4c2-.3 3.8.7 4.4 2.4C10.6 4.7 12.4 3.7 14.4 4c3.6.5 5.2 4.2 3.6 7.7C15.5 16.1 12 21 12 21z"/></svg></span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="18">0</div>
+          <div class="dash-stat-label">ICU beds free</div>
+        </div>
+      </div>
+
+      <div class="card chart-card">
+        <div class="chart-card-head"><h3>Occupancy by ward</h3><span class="mono-label">Live</span></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;" data-dash-stagger>
+          <div class="dept-progress-card card">
+            <div class="dept-progress-head"><span style="font-weight:700;">General Ward</span><span class="mono-label">88%</span></div>
+            <div class="dept-progress-track"><div class="dept-progress-fill" data-value="88"></div></div>
+            <div class="dept-progress-meta"><span>176 / 200 beds</span><span>General care</span></div>
+          </div>
+          <div class="dept-progress-card card">
+            <div class="dept-progress-head"><span style="font-weight:700;">ICU</span><span class="mono-label">72%</span></div>
+            <div class="dept-progress-track"><div class="dept-progress-fill" data-value="72"></div></div>
+            <div class="dept-progress-meta"><span>36 / 50 beds</span><span>Critical care</span></div>
+          </div>
+          <div class="dept-progress-card card">
+            <div class="dept-progress-head"><span style="font-weight:700;">Maternity</span><span class="mono-label">64%</span></div>
+            <div class="dept-progress-track"><div class="dept-progress-fill" data-value="64"></div></div>
+            <div class="dept-progress-meta"><span>32 / 50 beds</span><span>Labor &amp; delivery</span></div>
+          </div>
+          <div class="dept-progress-card card">
+            <div class="dept-progress-head"><span style="font-weight:700;">Pediatric Ward</span><span class="mono-label">79%</span></div>
+            <div class="dept-progress-track"><div class="dept-progress-fill" data-value="79"></div></div>
+            <div class="dept-progress-meta"><span>55 / 70 beds</span><span>Ages 0–17</span></div>
+          </div>
+          <div class="dept-progress-card card">
+            <div class="dept-progress-head"><span style="font-weight:700;">Emergency Ward</span><span class="mono-label">95%</span></div>
+            <div class="dept-progress-track"><div class="dept-progress-fill" data-value="95"></div></div>
+            <div class="dept-progress-meta"><span>38 / 40 beds</span><span>Trauma &amp; urgent</span></div>
+          </div>
+          <div class="dept-progress-card card">
+            <div class="dept-progress-head"><span style="font-weight:700;">Recovery</span><span class="mono-label">41%</span></div>
+            <div class="dept-progress-track"><div class="dept-progress-fill" data-value="41"></div></div>
+            <div class="dept-progress-meta"><span>8 / 20 beds</span><span>Post-op</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MESSAGES ===================== -->
+    <section id="messages" class="dash-panel">
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div class="msg-layout">
+          <div class="msg-list">
+            <div class="msg-list-item is-active">
+              <span class="avatar-initials" style="width:40px;height:40px;border-radius:50%;font-size:.85rem;flex-shrink:0;">NP</span>
+              <div style="min-width:0;"><div class="msg-list-name">Nina Park</div><div class="msg-list-preview">Thank you, see you at 9:30!</div></div>
+              <span class="msg-list-time">9:02 AM</span>
+            </div>
+            <div class="msg-list-item">
+              <span class="avatar-initials" style="width:40px;height:40px;border-radius:50%;font-size:.85rem;flex-shrink:0;">DO</span>
+              <div style="min-width:0;"><div class="msg-list-name">David Osei</div><div class="msg-list-preview">Can we move my appointment to Friday?</div></div>
+              <span class="msg-list-time">Yesterday</span>
+            </div>
+            <div class="msg-list-item">
+              <span class="avatar-initials" style="width:40px;height:40px;border-radius:50%;font-size:.85rem;flex-shrink:0;">EF</span>
+              <div style="min-width:0;"><div class="msg-list-name">Dr. Elena Fischer</div><div class="msg-list-preview">Updated the pediatric intake form</div></div>
+              <span class="msg-list-time">Yesterday</span>
+            </div>
+            <div class="msg-list-item">
+              <span class="avatar-initials" style="width:40px;height:40px;border-radius:50%;font-size:.85rem;flex-shrink:0;">SK</span>
+              <div style="min-width:0;"><div class="msg-list-name">Sarah Kim, RN</div><div class="msg-list-preview">Case review notes are ready</div></div>
+              <span class="msg-list-time">Mon</span>
+            </div>
+            <div class="msg-list-item">
+              <span class="avatar-initials" style="width:40px;height:40px;border-radius:50%;font-size:.85rem;flex-shrink:0;">TB</span>
+              <div style="min-width:0;"><div class="msg-list-name">Tobias Brandt, MD</div><div class="msg-list-preview">Referral sent to Dermatology</div></div>
+              <span class="msg-list-time">Mon</span>
+            </div>
+          </div>
+          <div class="msg-thread">
+            <div class="msg-thread-head">
+              <span class="avatar-initials" style="width:38px;height:38px;border-radius:50%;font-size:.82rem;">NP</span>
+              <div><div style="font-weight:700;" data-thread-name>Nina Park</div><div style="font-size:.76rem;color:var(--ink-faint);">Patient #4021</div></div>
+            </div>
+            <div class="msg-thread-body">
+              <div class="msg-bubble msg-bubble--in">Hi! Just confirming my appointment with Dr. Chen tomorrow at 9:30?</div>
+              <div class="msg-bubble msg-bubble--out">Yes, that's confirmed — 9:30 AM, Cardiology wing, 2nd floor.</div>
+              <div class="msg-bubble msg-bubble--in">Perfect, thank you!</div>
+              <div class="msg-bubble msg-bubble--in">Thank you, see you at 9:30!</div>
+            </div>
+            <div class="msg-thread-foot">
+              <input type="text" placeholder="Type a reply…">
+              <button type="button" class="btn btn-primary" style="padding:12px 20px;">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NOTIFICATIONS ===================== -->
+    <section id="notifications" class="dash-panel">
+      <div class="card" style="padding:24px; max-width: 720px;">
+        <div class="section-title-row"><h3>Today</h3></div>
+        <div class="notif-list">
+          <div class="notif-item is-unread">
+            <span class="activity-dot" style="background:var(--coral-soft); color:var(--coral-deep);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></span>
+            <div><div class="activity-text">ER capacity at <b>95%</b> — consider overflow staffing</div><div class="activity-time">10 minutes ago</div></div>
+          </div>
+          <div class="notif-item is-unread">
+            <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg></span>
+            <div><div class="activity-text">Metoprolol stock fell below reorder threshold</div><div class="activity-time">32 minutes ago</div></div>
+          </div>
+          <div class="notif-item is-unread">
+            <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span>
+            <div><div class="activity-text">3 telehealth consults scheduled for this afternoon</div><div class="activity-time">44 minutes ago</div></div>
+          </div>
+          <div class="notif-item">
+            <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+            <div><div class="activity-text">Invoice #10432 marked overdue — 14 days</div><div class="activity-time">1 hour ago</div></div>
+          </div>
+          <div class="notif-item">
+            <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4zM4 9h16M9 21V9"/></svg></span>
+            <div><div class="activity-text">Weekly performance report is ready to view</div><div class="activity-time">Today, 7:00 AM</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="padding:24px; max-width: 720px; margin-top:16px;">
+        <div class="section-title-row"><h3>Earlier this week</h3></div>
+        <div class="notif-list">
+          <div class="notif-item">
+            <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 20v-1a5 5 0 0 1 10 0v1"/></svg></span>
+            <div><div class="activity-text">2 new staff onboarded to Emergency</div><div class="activity-time">Tuesday</div></div>
+          </div>
+          <div class="notif-item">
+            <span class="activity-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 11V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v4M2 19v-6a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v6M2 19v2M22 19v2M12 11h9"/></svg></span>
+            <div><div class="activity-text">ICU occupancy briefly exceeded 90%</div><div class="activity-time">Monday</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PHARMACY ===================== -->
+    <section id="pharmacy" class="dash-panel">
+      <div class="dash-stats" style="grid-template-columns: repeat(3, 1fr);" data-dash-stagger>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg></span>
+            <span class="dash-trend dash-trend--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15 12 9l-6 6"/></svg> 3.4%</span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="1284">0</div>
+          <div class="dash-stat-label">Prescriptions filled (MTD)</div>
+        </div>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="7">0</div>
+          <div class="dash-stat-label">Low-stock items</div>
+        </div>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="23">0</div>
+          <div class="dash-stat-label">Pending refill requests</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:24px;">
+        <div class="section-title-row"><h3>Inventory</h3></div>
+        <div class="dash-table-wrap">
+          <table class="dash-table">
+            <thead><tr><th>Medication</th><th>Category</th><th>Stock</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Atorvastatin 10mg</td><td>Cardiology</td><td>1,240 units</td><td><span class="status-pill status-pill--success">In stock</span></td></tr>
+              <tr><td>Metoprolol 25mg</td><td>Cardiology</td><td>86 units</td><td><span class="status-pill status-pill--pending">Low stock</span></td></tr>
+              <tr><td>Amoxicillin 500mg</td><td>General</td><td>2,015 units</td><td><span class="status-pill status-pill--success">In stock</span></td></tr>
+              <tr><td>Insulin Glargine</td><td>Endocrinology</td><td>34 units</td><td><span class="status-pill status-pill--danger">Reorder now</span></td></tr>
+              <tr><td>Albuterol Inhaler</td><td>Pediatrics</td><td>410 units</td><td><span class="status-pill status-pill--success">In stock</span></td></tr>
+              <tr><td>Lisinopril 20mg</td><td>Cardiology</td><td>112 units</td><td><span class="status-pill status-pill--pending">Low stock</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== BILLING ===================== -->
+    <section id="billing" class="dash-panel">
+      <div class="dash-stats" data-dash-stagger>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+            <span class="dash-trend dash-trend--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15 12 9l-6 6"/></svg> 5.1%</span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="284" data-prefix="$" data-suffix="K">0</div>
+          <div class="dash-stat-label">Collected (MTD)</div>
+        </div>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="41" data-prefix="$" data-suffix="K">0</div>
+          <div class="dash-stat-label">Outstanding balance</div>
+        </div>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="612">0</div>
+          <div class="dash-stat-label">Claims processed</div>
+        </div>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg></span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="9">0</div>
+          <div class="dash-stat-label">Accounts overdue</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:24px;">
+        <div class="section-title-row"><h3>Recent invoices</h3></div>
+        <div class="dash-table-wrap">
+          <table class="dash-table">
+            <thead><tr><th>Invoice</th><th>Patient</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>#10432</td><td>Marcus Webb Jr.</td><td>$1,240.00</td><td>Aug 07, 2026</td><td><span class="status-pill status-pill--danger">Overdue</span></td></tr>
+              <tr><td>#10441</td><td>Nina Park</td><td>$310.00</td><td>Aug 14, 2026</td><td><span class="status-pill status-pill--success">Paid</span></td></tr>
+              <tr><td>#10447</td><td>David Osei</td><td>$860.00</td><td>Aug 15, 2026</td><td><span class="status-pill status-pill--pending">Pending</span></td></tr>
+              <tr><td>#10453</td><td>Priya Sharma</td><td>$150.00</td><td>Aug 18, 2026</td><td><span class="status-pill status-pill--success">Paid</span></td></tr>
+              <tr><td>#10458</td><td>Sarah Kim</td><td>$2,100.00</td><td>Aug 19, 2026</td><td><span class="status-pill status-pill--pending">Pending</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== STAFF ===================== -->
+    <section id="staff" class="dash-panel">
+      <div class="dash-stats" style="grid-template-columns: repeat(3, 1fr);" data-dash-stagger>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 20v-1a5 5 0 0 1 10 0v1"/></svg></span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="486">0</div>
+          <div class="dash-stat-label">Total staff</div>
+        </div>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="312">0</div>
+          <div class="dash-stat-label">On shift now</div>
+        </div>
+        <div class="card dash-stat-card">
+          <div class="dash-stat-top">
+            <span class="dash-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.9-10-9.3C.4 8.2 2 4.5 5.6 4c2-.3 3.8.7 4.4 2.4C10.6 4.7 12.4 3.7 14.4 4c3.6.5 5.2 4.2 3.6 7.7C15.5 16.1 12 21 12 21z"/></svg></span>
+          </div>
+          <div class="dash-stat-num" data-dash-counter="19">0</div>
+          <div class="dash-stat-label">On leave</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:24px;">
+        <div class="section-title-row"><h3>Staff directory</h3></div>
+        <div class="dash-table-wrap">
+          <table class="dash-table">
+            <thead><tr><th>Name</th><th>Role</th><th>Department</th><th>Shift</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">SK</span><div class="table-person-name">Sarah Kim</div></div></td><td>RN</td><td>Cardiology</td><td>Day</td><td><span class="status-pill status-pill--success">On shift</span></td></tr>
+              <tr><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">TB</span><div class="table-person-name">Tobias Brandt</div></div></td><td>MD</td><td>General Medicine</td><td>Day</td><td><span class="status-pill status-pill--success">On shift</span></td></tr>
+              <tr><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">JD</span><div class="table-person-name">Jordan Diaz</div></div></td><td>Administrator</td><td>Operations</td><td>Day</td><td><span class="status-pill status-pill--success">On shift</span></td></tr>
+              <tr><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">MW</span><div class="table-person-name">Dr. Marcus Webb</div></div></td><td>Orthopedic Surgeon</td><td>Orthopedics</td><td>—</td><td><span class="status-pill status-pill--pending">On leave</span></td></tr>
+              <tr><td><div class="table-person"><span class="avatar-initials" style="width:34px;height:34px;font-size:.78rem;border-radius:50%;">AR</span><div class="table-person-name">Aidan Reyes</div></div></td><td>RN</td><td>Emergency</td><td>Night</td><td><span class="status-pill status-pill--success">On shift</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== REPORTS ===================== -->
+    <section id="reports" class="dash-panel">
+      <div class="chart-row" style="grid-template-columns: 1fr;">
+        <div class="card chart-card">
+          <div class="chart-card-head"><h3>Revenue by quarter</h3><span class="mono-label">2026, in thousands</span></div>
+          <div class="bar-chart">
+            <div class="bar-col"><div class="bar" data-value="58"></div><span class="bar-label">Q1</span></div>
+            <div class="bar-col"><div class="bar" data-value="67"></div><span class="bar-label">Q2</span></div>
+            <div class="bar-col"><div class="bar" data-value="74"></div><span class="bar-label">Q3</span></div>
+            <div class="bar-col"><div class="bar" data-value="49"></div><span class="bar-label">Q4*</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid; gap:12px;" data-dash-stagger>
+        <div class="card report-card">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span class="report-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+            <div><div class="report-card-title">Monthly Revenue Report</div><div class="report-card-sub">August 2026 · PDF · 1.2 MB</div></div>
+          </div>
+          <button type="button" class="btn btn-ghost" style="padding:10px 18px; font-size:.82rem;">Download</button>
+        </div>
+        <div class="card report-card">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span class="report-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.5-4.9-10-9.3C.4 8.2 2 4.5 5.6 4c2-.3 3.8.7 4.4 2.4C10.6 4.7 12.4 3.7 14.4 4c3.6.5 5.2 4.2 3.6 7.7C15.5 16.1 12 21 12 21z"/></svg></span>
+            <div><div class="report-card-title">Patient Satisfaction Survey</div><div class="report-card-sub">Q3 2026 · PDF · 860 KB</div></div>
+          </div>
+          <button type="button" class="btn btn-ghost" style="padding:10px 18px; font-size:.82rem;">Download</button>
+        </div>
+        <div class="card report-card">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span class="report-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+            <div><div class="report-card-title">Department Performance</div><div class="report-card-sub">August 2026 · XLSX · 640 KB</div></div>
+          </div>
+          <button type="button" class="btn btn-ghost" style="padding:10px 18px; font-size:.82rem;">Download</button>
+        </div>
+        <div class="card report-card">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <span class="report-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>
+            <div><div class="report-card-title">Staffing Overview</div><div class="report-card-sub">August 2026 · PDF · 410 KB</div></div>
+          </div>
+          <button type="button" class="btn btn-ghost" style="padding:10px 18px; font-size:.82rem;">Download</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SETTINGS ===================== -->
+    <section id="settings" class="dash-panel">
+      <div class="card" style="padding: clamp(24px,3vw,36px); max-width: 720px;">
+        <div class="section-title-row"><h3>Profile</h3></div>
+        <div class="settings-form">
+          <div class="field-row-2">
+            <div class="field"><label for="set-first">First name</label><input type="text" id="set-first" value="Jordan"></div>
+            <div class="field"><label for="set-last">Last name</label><input type="text" id="set-last" value="Diaz"></div>
+          </div>
+          <div class="field"><label for="set-email">Email</label><input type="email" id="set-email" value="jordan.diaz@meridianhealth.example"></div>
+          <div class="field"><label for="set-phone">Phone</label><input type="tel" id="set-phone" value="+1 (000) 000-0000"></div>
+
+          <div class="section-title-row" style="margin-top:10px;"><h3>Notification preferences</h3></div>
+          <div class="toggle-row"><div><div class="toggle-row-title">Email notifications</div><div class="toggle-row-sub">Appointment confirmations and cancellations</div></div><div class="toggle-switch is-on"></div></div>
+          <div class="toggle-row"><div><div class="toggle-row-title">SMS alerts</div><div class="toggle-row-sub">Critical capacity and emergency alerts</div></div><div class="toggle-switch is-on"></div></div>
+          <div class="toggle-row"><div><div class="toggle-row-title">New patient alerts</div><div class="toggle-row-sub">Notify when a new patient registers</div></div><div class="toggle-switch"></div></div>
+          <div class="toggle-row"><div><div class="toggle-row-title">Weekly summary report</div><div class="toggle-row-sub">Sent every Monday at 7:00 AM</div></div><div class="toggle-switch is-on"></div></div>
+
+          <button type="button" class="btn btn-primary magnetic-target" style="margin-top:24px;">Save Changes</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/main.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
