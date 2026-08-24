@@ -23,7 +23,9 @@ window.initDashboardEntrance = function(){
   if(window.gsap && !reducedMotionDash){
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     if(topbar) tl.fromTo(topbar, { y: -24, opacity: 0 }, { y: 0, opacity: 1, duration: .6 }, 0);
-    if(sidebar) tl.fromTo(sidebar, { x: -18, opacity: 0 }, { x: 0, opacity: 1, duration: .6 }, .1);
+    if(sidebar) tl.fromTo(sidebar, { x: -18, opacity: 0 }, {
+      x: 0, opacity: 1, duration: .6, onComplete: () => gsap.set(sidebar, { clearProps: 'transform' })
+    }, .1);
     if(main) tl.fromTo(main, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: .6 }, .2);
     tl.call(() => animateActivePanel());
   } else {
@@ -135,6 +137,14 @@ function initSidebarNav(){
   }
   const title = document.querySelector('[data-dash-title]');
   const subtitle = document.querySelector('[data-dash-subtitle]');
+  const initialTarget = location.hash.slice(1);
+  const initialPanel = initialTarget && document.getElementById(initialTarget);
+  if(initialPanel){
+    links.forEach(link => link.classList.toggle('is-active', link.dataset.panel === initialTarget));
+    panels.forEach(panel => panel.classList.toggle('is-active', panel.id === initialTarget));
+    if(title) title.textContent = document.querySelector(`[data-panel="${initialTarget}"]`)?.dataset.title || title.textContent;
+    if(subtitle) subtitle.textContent = document.querySelector(`[data-panel="${initialTarget}"]`)?.dataset.subtitle || subtitle.textContent;
+  }
 
   links.forEach(link => {
     link.addEventListener('click', (e) => {
@@ -146,6 +156,7 @@ function initSidebarNav(){
       link.classList.add('is-active');
 
       panels.forEach(p => p.classList.toggle('is-active', p.id === target));
+      history.pushState(null, '', '#' + target);
       if(title) title.textContent = link.dataset.title || link.textContent.trim();
       if(subtitle) subtitle.textContent = link.dataset.subtitle || '';
 
@@ -165,7 +176,7 @@ function initSidebarNav(){
 
 function initPublicSidebarNav(links){
   const panelGroups = {
-    overview: ['.welcome-banner', '.quick-actions'],
+    overview: ['.welcome-banner', '.quick-actions', '.overview-glance'],
     appointment: ['#appointment', '#appointment + .card'],
     careteam: ['#careteam', '#careteam + .dash-stats'],
     services: ['#services', '#services + .dept-grid'],
@@ -187,7 +198,20 @@ function initPublicSidebarNav(links){
     });
   };
 
-  showPanel('overview');
+  const initialTarget = location.hash.slice(1);
+  const activeTarget = panelGroups[initialTarget] ? initialTarget : 'overview';
+  showPanel(activeTarget);
+  links.forEach(link => link.classList.toggle('is-active', link.dataset.panel === activeTarget));
+
+  const syncHashPanel = () => {
+    const target = location.hash.slice(1);
+    if(!panelGroups[target]) return;
+    showPanel(target);
+    links.forEach(link => link.classList.toggle('is-active', link.dataset.panel === target));
+  };
+  window.addEventListener('load', syncHashPanel);
+  window.addEventListener('hashchange', syncHashPanel);
+
   links.forEach(link => {
     link.addEventListener('click', (event) => {
       event.preventDefault();
@@ -195,8 +219,8 @@ function initPublicSidebarNav(links){
       links.forEach(item => item.classList.remove('is-active'));
       link.classList.add('is-active');
       showPanel(target);
+      history.pushState(null, '', '#' + target);
       closeMobileSidebar();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
 }
@@ -237,6 +261,12 @@ function initSidebarScrollspy(){
 --------------------------------------------------------------------- */
 function closeMobileSidebar(){
   document.body.classList.remove('sidebar-open');
+  document.body.classList.remove('no-scroll');
+  const toggle = document.querySelector('.sidebar-toggle');
+  if(toggle){
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open sidebar');
+  }
   const backdrop = document.querySelector('.sidebar-backdrop');
   if(backdrop) backdrop.classList.remove('is-visible');
 }
@@ -248,6 +278,7 @@ function initSidebarToggle(){
     const open = document.body.classList.toggle('sidebar-open');
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close sidebar' : 'Open sidebar');
+    document.body.classList.toggle('no-scroll', open);
     if(backdrop) backdrop.classList.toggle('is-visible', open);
   });
   if(backdrop) backdrop.addEventListener('click', closeMobileSidebar);

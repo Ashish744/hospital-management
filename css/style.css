@@ -61,6 +61,7 @@
 
 /* ---------- 2. RESET ---------- */
 *, *::before, *::after{ box-sizing: border-box; }
+*[hidden]{ display: none !important; }
 html{ scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
 body{
   margin: 0;
@@ -217,7 +218,7 @@ h1,h2,h3,h4, .h1,.h2,.h3,.h4{
   color: var(--ink);
   border: 1.5px solid var(--line);
 }
-.on-deep .btn-ghost{ color: var(--ink-on-deep); border-color: var(--line-on-deep); }
+.btn-ghost.on-deep{ color: var(--ink-on-deep); border-color: var(--line-on-deep); }
 .btn-ghost:hover{ border-color: var(--teal); background: rgba(18,114,107,0.06); }
 
 .btn-icon{
@@ -1041,6 +1042,7 @@ body.cursor-active #cursor-ring{ width: 60px; height: 60px; background: rgba(18,
   letter-spacing: -0.02em;
 }
 .avatar-initials--sm{ font-size: 1.3rem; }
+.profile-image{ object-fit: cover; }
 
 /* ==========================================================================
    AUTH PAGES — Login & Create Account

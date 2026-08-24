@@ -324,6 +324,13 @@ body.sidebar-open .sidebar-toggle .bars span:nth-child(3){ top: 50%; transform: 
 .quick-action .svc-icon{ margin: 0 auto 12px; }
 .quick-action-label{ font-weight: 700; font-size: 0.86rem; }
 
+.overview-glance{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+.overview-glance-card{ padding: 20px; }
+.overview-glance-label{ color: var(--ink-faint); font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; }
+.overview-glance-value{ color: var(--teal-deep); font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; margin-top: 8px; }
+.overview-glance-card p{ color: var(--ink-faint); font-size: .8rem; line-height: 1.5; margin: 6px 0 14px; }
+.overview-glance-link{ color: var(--teal); font-size: .78rem; font-weight: 700; }
+
 .appt-card{ padding: 26px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 .appt-date-block{ text-align: center; background: var(--bg-alt); border-radius: var(--r-md); padding: 14px 18px; flex-shrink: 0; }
 .appt-date-block .day{ font-family: var(--font-mono); font-size: 1.6rem; font-weight: 600; color: var(--teal-deep); line-height: 1; }
