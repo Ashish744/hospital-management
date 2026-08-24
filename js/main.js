@@ -15,6 +15,15 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 function initPreloader(){
   const loader = document.getElementById('preloader');
   if(!loader){ document.body.classList.add('is-ready'); return; }
+  const currentPage = location.pathname.split('/').pop() || 'index.html';
+  if(currentPage !== 'index.html'){
+    loader.style.display = 'none';
+    document.body.classList.add('is-ready');
+    const nav = document.getElementById('navbar');
+    if(nav) nav.style.transform = 'translateY(0)';
+    if(window.initHeroSequence) window.initHeroSequence();
+    return;
+  }
 
   const fill = loader.querySelector('.loader-progress-fill');
   const percentEl = loader.querySelector('.loader-percent-value');
