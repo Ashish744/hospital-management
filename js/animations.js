@@ -184,28 +184,42 @@
     const track = document.querySelector('.journey-track');
     if(!pin || !track) return;
 
-    if(isMobile){
-      pin.style.height = 'auto';
-      return;
-    }
-
     const getScrollAmount = () => {
       const padRight = parseFloat(getComputedStyle(track).paddingRight) || 40;
       return track.scrollWidth - window.innerWidth + padRight;
     };
 
-    let tween = gsap.to(track, {
-      x: () => -getScrollAmount(),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: pin,
-        start: 'top top',
-        end: () => '+=' + (getScrollAmount() + window.innerHeight),
-        scrub: 1,
-        pin: true,
-        invalidateOnRefresh: true
+    let tween = null;
+    let mobile = window.innerWidth <= 768;
+    const setup = () => {
+      const nextMobile = window.innerWidth <= 768;
+      if(tween){
+        tween.scrollTrigger.kill();
+        tween.kill();
+        tween = null;
       }
-    });
+      gsap.set([pin, track], { clearProps: 'all' });
+      mobile = nextMobile;
+      if(mobile){
+        pin.style.height = 'auto';
+        return;
+      }
+      tween = gsap.to(track, {
+        x: () => -getScrollAmount(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: pin,
+          start: 'top top',
+          end: () => '+=' + (getScrollAmount() + window.innerHeight),
+          scrub: 1,
+          pin: true,
+          invalidateOnRefresh: true
+        }
+      });
+    };
+
+    setup();
+    window.addEventListener('resize', setup);
   }
 
   /* ----------------------------------------------------------------
@@ -214,6 +228,7 @@
   function initWhySticky(){
     const items = document.querySelectorAll('.why-item');
     if(!items.length) return;
+    const section = document.querySelector('.why-section');
     items.forEach((item, i) => {
       ScrollTrigger.create({
         trigger: item,
@@ -223,6 +238,24 @@
         onEnterBack: () => setActiveWhy(i)
       });
     });
+    if(section){
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top bottom',
+        end: 'bottom top',
+        onUpdate: () => {
+          const line = window.innerHeight * .55;
+          let closest = 0;
+          let distance = Infinity;
+          items.forEach((item, i) => {
+            const rect = item.getBoundingClientRect();
+            const itemDistance = Math.abs(rect.top + rect.height / 2 - line);
+            if(itemDistance < distance){ distance = itemDistance; closest = i; }
+          });
+          setActiveWhy(closest);
+        }
+      });
+    }
     function setActiveWhy(i){
       items.forEach((it, idx) => it.classList.toggle('is-active', idx === i));
       const stat = document.querySelector('.why-visual-stat [data-counter]');

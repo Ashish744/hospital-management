@@ -77,9 +77,23 @@
   .testi-card{ grid-template-columns: 1fr; text-align: left; }
   .testi-stage{ min-height: 380px; }
 
-  .journey-pin{ height: auto; overflow: visible; }
+  .journey-pin{
+    height: auto !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    inset: auto !important;
+    margin: 0 !important;
+    overflow: visible;
+    transform: none !important;
+  }
   .journey-track{ width: 100%; flex-direction: column; gap: 16px; padding: 0 20px; }
   .journey-step{ width: 100%; padding: 30px 26px; min-height: 260px; }
+  .journey-pin, .journey-pin *, .journey-pin *::before, .journey-pin *::after{
+    animation: none !important;
+    transition: none !important;
+  }
+  .journey-pin .journey-track, .journey-pin .journey-step{ transform: none !important; }
 
   .article-strip{ flex-direction: column; overflow: visible; }
   .article-strip-card{ flex-basis: auto; width: 100%; }
