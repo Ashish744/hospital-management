@@ -102,6 +102,7 @@ function initMobileMenu(){
   const setOpen = (val) => {
     open = val;
     document.documentElement.classList.toggle('nav-open', open);
+    document.documentElement.classList.toggle('no-scroll', open);
     document.body.classList.toggle('no-scroll', open);
     toggle.setAttribute('aria-expanded', String(open));
 

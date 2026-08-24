@@ -262,6 +262,7 @@ function initSidebarScrollspy(){
 function closeMobileSidebar(){
   document.body.classList.remove('sidebar-open');
   document.body.classList.remove('no-scroll');
+  document.documentElement.classList.remove('no-scroll');
   const toggle = document.querySelector('.sidebar-toggle');
   if(toggle){
     toggle.setAttribute('aria-expanded', 'false');
@@ -279,6 +280,7 @@ function initSidebarToggle(){
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close sidebar' : 'Open sidebar');
     document.body.classList.toggle('no-scroll', open);
+    document.documentElement.classList.toggle('no-scroll', open);
     if(backdrop) backdrop.classList.toggle('is-visible', open);
   });
   if(backdrop) backdrop.addEventListener('click', closeMobileSidebar);
