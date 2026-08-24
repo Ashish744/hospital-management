@@ -365,13 +365,8 @@
       { input: document.getElementById('contact-subject'), validator: validateRequired('Subject') },
       { input: document.getElementById('contact-message'), validator: validateMessage }
     ], () => {
-      const wrap = form.closest('.card');
-      const success = wrap ? wrap.querySelector('.form-success') : null;
-      form.style.display = 'none';
-      if(success){
-        success.classList.add('is-visible');
-        if(window.gsap) gsap.fromTo(success, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .6, ease: 'power3.out' });
-      }
+      form.reset();
+      window.location.href = '404.html';
     });
   });
 </script>

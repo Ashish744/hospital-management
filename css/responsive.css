@@ -106,7 +106,8 @@
   .value-grid{ grid-template-columns: 1fr 1fr; }
   .tech-grid{ grid-template-columns: 1fr; }
   .dept-grid{ grid-template-columns: 1fr; }
-  .pair-grid{ grid-template-columns: 1fr; }
+  .pair-grid{ grid-template-columns: 1fr !important; }
+  .pair-grid .value-grid{ grid-template-columns: 1fr !important; }
   .feature-row, .feature-row--reverse{ grid-template-columns: 1fr; }
   .feature-row--reverse .feature-row-visual{ order: -1; }
   .timeline::before{ left: 20px; }
@@ -208,6 +209,8 @@
   .dash-main{ padding: 22px 16px 50px; }
   .welcome-banner{ flex-direction: column; align-items: flex-start; }
   .quick-actions{ grid-template-columns: 1fr 1fr; }
+  .overview-glance{ grid-template-columns: 1fr; }
+  #overview > .dash-stats[style*="repeat(4"]{ grid-template-columns: 1fr !important; }
   .health-summary-grid{ grid-template-columns: 1fr; }
   .donut-wrap{ flex-direction: column; }
   .report-card{ flex-wrap: wrap; }

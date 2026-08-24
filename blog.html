@@ -265,23 +265,23 @@
       </div>
     </div>
     <div class="article-strip">
-      <a href="#" class="blog-card article-strip-card">
+      <a href="404.html" class="blog-card article-strip-card">
         <div class="blog-img"><div class="ph-visual"></div><span class="blog-cat">Cardiology</span></div>
         <div class="blog-body"><span class="blog-date">Aug 14, 2026</span><div class="blog-title">Five early warning signs your heart is asking for attention</div></div>
       </a>
-      <a href="#" class="blog-card article-strip-card">
+      <a href="404.html" class="blog-card article-strip-card">
         <div class="blog-img"><div class="ph-visual ph-visual--light"></div><span class="blog-cat">Wellness</span></div>
         <div class="blog-body"><span class="blog-date">Jul 15, 2026</span><div class="blog-title">The 10-minute daily habit that actually lowers blood pressure</div></div>
       </a>
-      <a href="#" class="blog-card article-strip-card">
+      <a href="404.html" class="blog-card article-strip-card">
         <div class="blog-img"><div class="ph-visual"></div><span class="blog-cat">Neurology</span></div>
         <div class="blog-body"><span class="blog-date">Jul 22, 2026</span><div class="blog-title">Migraines vs. headaches: when it's time to see a neurologist</div></div>
       </a>
-      <a href="#" class="blog-card article-strip-card">
+      <a href="404.html" class="blog-card article-strip-card">
         <div class="blog-img"><div class="ph-visual ph-visual--light"></div><span class="blog-cat">Nutrition</span></div>
         <div class="blog-body"><span class="blog-date">Jul 30, 2026</span><div class="blog-title">What your bloodwork actually tells you about diet</div></div>
       </a>
-      <a href="#" class="blog-card article-strip-card">
+      <a href="404.html" class="blog-card article-strip-card">
         <div class="blog-img"><div class="ph-visual"></div><span class="blog-cat">Pediatrics</span></div>
         <div class="blog-body"><span class="blog-date">Aug 08, 2026</span><div class="blog-title">Building a vaccination schedule that actually sticks</div></div>
       </a>
@@ -298,22 +298,22 @@
         <span class="eyebrow section-tag">Most read</span>
         <h2 class="h2" style="margin-bottom:20px;">Popular articles.</h2>
         <div class="popular-list">
-          <a href="#" class="popular-item">
+          <a href="404.html" class="popular-item">
             <span class="popular-rank">01</span>
             <span class="popular-thumb"><div class="ph-visual" style="width:100%;height:100%;"></div></span>
             <span><span class="popular-cat">Cardiology</span><div class="popular-title">Five early warning signs your heart is asking for attention</div></span>
           </a>
-          <a href="#" class="popular-item">
+          <a href="404.html" class="popular-item">
             <span class="popular-rank">02</span>
             <span class="popular-thumb"><div class="ph-visual ph-visual--light" style="width:100%;height:100%;"></div></span>
             <span><span class="popular-cat">Wellness</span><div class="popular-title">The 10-minute daily habit that actually lowers blood pressure</div></span>
           </a>
-          <a href="#" class="popular-item">
+          <a href="404.html" class="popular-item">
             <span class="popular-rank">03</span>
             <span class="popular-thumb"><div class="ph-visual" style="width:100%;height:100%;"></div></span>
             <span><span class="popular-cat">Nutrition</span><div class="popular-title">What your bloodwork actually tells you about diet</div></span>
           </a>
-          <a href="#" class="popular-item">
+          <a href="404.html" class="popular-item">
             <span class="popular-rank">04</span>
             <span class="popular-thumb"><div class="ph-visual ph-visual--light" style="width:100%;height:100%;"></div></span>
             <span><span class="popular-cat">Neurology</span><div class="popular-title">Sleep, screens, and the neurology of a bad night's rest</div></span>
@@ -402,9 +402,8 @@
     MeridianValidate.bindForm(form, [
       { input, validator: MeridianValidate.validateEmail }
     ], () => {
-      form.style.display = 'none';
-      success.classList.add('is-visible');
-      if(window.gsap) gsap.fromTo(success, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .5 });
+      form.reset();
+      window.location.href = '404.html';
     });
   });
 </script>
