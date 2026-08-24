@@ -212,6 +212,8 @@ h1,h2,h3,h4, .h1,.h2,.h3,.h4{
 }
 .btn-primary:hover::before{ transform: translateY(0); }
 .btn-primary:hover{ transform: translateY(-2px); }
+.btn-account{ background: var(--teal); box-shadow: 0 12px 28px rgba(18,114,107,.22); }
+.btn-account::before{ background: var(--teal-deep); }
 
 .btn-ghost{
   background: transparent;
