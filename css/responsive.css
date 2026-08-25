@@ -74,8 +74,11 @@
   .footer-cell:first-child{ grid-column: 1 / -1; }
   .footer-cell:nth-child(4){ grid-column: 1 / -1; }
 
-  .testi-card{ grid-template-columns: 1fr; text-align: left; }
-  .testi-stage{ min-height: 380px; }
+  .testi-card{ grid-template-columns: 1fr; text-align: left; padding: 28px 24px; gap: 14px; }
+  .testi-stage{ min-height: 410px; }
+  .testi-avatar{ width: 56px; height: 56px; }
+  .testi-quote{ font-size: 1.12rem; line-height: 1.5; }
+  .testi-controls{ margin-top: 16px; }
 
   .journey-pin{
     height: auto !important;
@@ -108,11 +111,56 @@
   .contact-grid{ grid-template-columns: 1fr; }
   .newsletter-form{ flex-direction: column; }
   .newsletter-form .btn{ width: 100%; justify-content: center; }
-  .popular-thumb{ display: none; }
+  .popular-item{ gap: 12px; padding: 16px 0; align-items: flex-start; }
+  .popular-rank{ width: 24px; font-size: 1.15rem; }
+  .popular-thumb{ display: block; width: 54px; height: 54px; }
+  .popular-title{ font-size: .9rem; line-height: 1.35; }
 
   .footer-bottom{ flex-direction: column; align-items: flex-start; }
   .footer-bottom .legal-links{ display:flex; gap: 14px; }
   .footer-bottom a{ margin-left: 0; }
+
+  .appointment-history-card{ padding: 16px !important; }
+  .appointment-history-table,
+  .appointment-history-table tbody,
+  .appointment-history-table tr,
+  .appointment-history-table td{ display: block; width: 100%; min-width: 0; }
+  .appointment-history-table thead{ display: none; }
+  .appointment-history-table tr{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .appointment-history-table tr:first-child{ padding-top: 0; }
+  .appointment-history-table tr:last-child{ padding-bottom: 0; border-bottom: none; }
+  .appointment-history-table td{
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 5px 0;
+    border-bottom: none;
+    text-align: left;
+  }
+  .appointment-history-table td::before{
+    content: attr(data-label);
+    flex: 0 0 auto;
+    color: var(--ink-faint);
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  .appointment-history-table td:first-child{ font-weight: 700; }
+  .appointment-history-table td:nth-child(1){ grid-column: 1; grid-row: 1; }
+  .appointment-history-table td:nth-child(2){ grid-column: 1; grid-row: 2; }
+  .appointment-history-table td:nth-child(3){ grid-column: 2; grid-row: 2; }
+  .appointment-history-table td:nth-child(4){ grid-column: 2; grid-row: 1; justify-content: flex-end; }
+  .appointment-history-table td:nth-child(3)::before{ display: none; }
+  .appointment-history-table td:nth-child(4)::before{ display: none; }
 
   .field-row-2{ grid-template-columns: 1fr; gap: 0; }
   .auth-form-wrap, .auth-panel{ padding: 30px 22px; }
@@ -216,6 +264,13 @@
 
 @media (max-width: 768px){
   .dash-stats{ grid-template-columns: 1fr 1fr; gap: 12px; }
+  .careteam-stats{ grid-template-columns: 1fr !important; }
+  .admin-doctors-grid{ grid-template-columns: 1fr !important; }
+  .billing-row{ grid-template-columns: 1fr !important; }
+  .notifications-row,
+  .chart-row:has(#messages){ grid-template-columns: 1fr !important; }
+  .notifications-row #messages,
+  .chart-row:has(#messages) #messages{ grid-column: 1 / -1; width: 100%; }
   .dash-stat-card{ padding: 18px; }
   .dash-stat-num{ font-size: 1.5rem; }
   .profile-trigger-name{ display: none; }

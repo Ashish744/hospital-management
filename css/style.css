@@ -665,7 +665,7 @@ body.cursor-active #cursor-ring{ width: 60px; height: 60px; background: rgba(18,
 .fc-icon svg{ width: 20px; height: 20px; }
 .fc-title{ font-weight: 700; font-size: 0.92rem; line-height: 1.2; }
 .fc-sub{ font-size: 0.78rem; color: var(--ink-faint); }
-.floating-card--1{ top: 8%; left: -8%; }
+.floating-card--1{ top: 8%; left: 6%; }
 .floating-card--2{ bottom: 12%; right: -10%; }
 .floating-card--3{ top: 46%; right: -6%; }
 
@@ -939,34 +939,50 @@ body.cursor-active #cursor-ring{ width: 60px; height: 60px; background: rgba(18,
 .why-item p{ color: var(--ink-faint); max-width: 52ch; }
 
 /* ---------- TESTIMONIALS ---------- */
-.testi-layout{ display: grid; grid-template-columns: 1fr; gap: 40px; }
+.testimonials-section{ overflow: hidden; }
+.testi-layout{ display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
 .testi-stage{
   position: relative;
-  min-height: 300px;
-  overflow: visible; /* testi-card children are absolutely positioned and may exceed min-height on narrow layouts */
+  min-height: 318px;
+  display: grid;
+  isolation: isolate;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
 }
 .testi-card{
-  position: absolute; inset: 0;
-  padding: 40px;
-  display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: flex-start;
+  grid-area: 1 / 1;
+  min-width: 0;
+  align-self: stretch;
+  padding: clamp(28px, 4vw, 48px);
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 32px);
+  align-items: start;
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity .35s ease, transform .45s var(--ease-out), visibility 0s linear .45s;
 }
-.testi-card.is-active{ opacity: 1; pointer-events: auto; }
-.testi-avatar{ width: 64px; height: 64px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
-.testi-avatar img{ width: 100%; height: 100%; object-fit: cover; }
+.testi-card.is-active{ opacity: 1; pointer-events: auto; visibility: visible; transform: translateY(0); transition-delay: 0s; }
+.testi-avatar{ width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid var(--surface-mint); }
 .testi-stars{ display:flex; gap: 3px; color: var(--coral); margin-bottom: 12px; }
 .testi-stars svg{ width: 15px; height: 15px; }
-.testi-quote{ font-family: var(--font-display); font-size: clamp(1.1rem,1.7vw,1.5rem); font-weight: 500; line-height: 1.4; }
+.testi-card > div:last-child{ min-width: 0; max-width: 760px; }
+.testi-quote{ margin: 0; font-family: var(--font-display); font-size: clamp(1.1rem,1.7vw,1.5rem); font-weight: 500; line-height: 1.45; overflow-wrap: anywhere; }
 .testi-name{ margin-top: 16px; font-weight: 700; }
 .testi-role{ font-size: 0.85rem; color: var(--ink-faint); }
 .testi-controls{ display: flex; align-items: center; justify-content: space-between; }
-.testi-dots{ display: flex; gap: 8px; }
+.testi-dots{ display: flex; align-items: center; gap: 8px; }
 .testi-dot{ width: 8px; height: 8px; border-radius: 50%; background: var(--line); transition: all .3s ease; }
 .testi-dot.is-active{ width: 22px; border-radius: 4px; background: var(--coral); }
 .testi-nav{ display: flex; gap: 10px; }
 .testi-arrow{ width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; }
 .testi-arrow:hover{ background: var(--bg-alt); }
+.testi-arrow:focus-visible{ outline: 3px solid var(--coral-soft); outline-offset: 3px; }
 .testi-arrow svg{ width: 16px; height: 16px; }
 
 /* ---------- BLOG ---------- */

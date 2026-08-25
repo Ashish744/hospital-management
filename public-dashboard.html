@@ -62,10 +62,10 @@
     </a>
   </div>
   <div class="dash-topbar-right">
-    <button class="icon-btn" aria-label="Notifications">
+    <a href="404.html" class="icon-btn" aria-label="Notifications">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
       <span class="dot"></span>
-    </button>
+    </a>
     <div class="profile-widget">
       <button class="profile-trigger">
         <span class="avatar-initials">NP</span>
@@ -133,8 +133,8 @@
     <span class="sidebar-label">Account</span>
     <nav class="sidebar-nav">
       <a href=" " class="sidebar-link" data-panel="prescriptions">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg>
-        Prescriptions
+        <!-- <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg> -->
+        
       </a>
       <a href="  " class="sidebar-link" data-panel="billing">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
@@ -226,34 +226,34 @@
         <div class="appt-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> 9:30 AM · Main Campus, 2nd Floor</div>
       </div>
       <div style="display:flex; gap:10px;">
-        <button type="button" class="btn btn-ghost" style="padding:11px 18px; font-size:.85rem;">Reschedule</button>
-        <button type="button" class="btn btn-primary magnetic-target" style="padding:11px 18px; font-size:.85rem;">Join Check-in</button>
+        <a href="404.html" class="btn btn-ghost" style="padding:11px 18px; font-size:.85rem;">Reschedule</a>
+        <a href="404.html" class="btn btn-primary magnetic-target" style="padding:11px 18px; font-size:.85rem;">Join Check-in</a>
       </div>
     </div>
 
     <!-- DOCTOR INFORMATION -->
     <div class="section-title-row" id="careteam"><h3>Your care team</h3></div>
-    <div class="dash-stats" style="grid-template-columns: repeat(3, 1fr); margin-bottom:24px;" data-dash-stagger>
+    <div class="dash-stats careteam-stats" style="grid-template-columns: repeat(3, 1fr); margin-bottom:24px;" data-dash-stagger>
       <div class="mini-doctor-card card">
         <img class="avatar-initials profile-image" src="assets/images/profile2.webp" alt="Dr. Amara Chen" loading="lazy">
         <div class="name">Dr. Amara Chen</div>
         <div class="spec">Cardiology · Primary</div>
         <div class="stat-row"><div><b>6</b><span>Visits</span></div><div><b>4.9</b><span>Rating</span></div></div>
-        <button type="button" class="btn btn-ghost" style="width:100%; justify-content:center; margin-top:16px; padding:9px; font-size:.82rem;">Message</button>
+        <button type="button" class="btn btn-ghost" style="width:100%; justify-content:center; margin-top:16px; padding:9px; font-size:.82rem;"> <a href="404.html">Message</a></button>
       </div>
       <div class="mini-doctor-card card">
         <img class="avatar-initials profile-image" src="assets/images/profile4.webp" alt="Dr. Rohan Mehta" loading="lazy">
         <div class="name">Dr. Rohan Mehta</div>
         <div class="spec">Neurology</div>
         <div class="stat-row"><div><b>2</b><span>Visits</span></div><div><b>4.8</b><span>Rating</span></div></div>
-        <button type="button" class="btn btn-ghost" style="width:100%; justify-content:center; margin-top:16px; padding:9px; font-size:.82rem;">Message</button>
+        <button type="button" class="btn btn-ghost" style="width:100%; justify-content:center; margin-top:16px; padding:9px; font-size:.82rem;"> <a href="404.html">Message</a></button>
       </div>
       <div class="mini-doctor-card card">
         <img class="avatar-initials profile-image" src="assets/images/Avatar-2.webp" alt="Dr. Liam O'Connor" loading="lazy">
         <div class="name">Dr. Liam O'Connor</div>
         <div class="spec">Dermatology</div>
         <div class="stat-row"><div><b>1</b><span>Visit</span></div><div><b>4.6</b><span>Rating</span></div></div>
-        <button type="button" class="btn btn-ghost" style="width:100%; justify-content:center; margin-top:16px; padding:9px; font-size:.82rem;">Message</button>
+        <button type="button" class="btn btn-ghost" style="width:100%; justify-content:center; margin-top:16px; padding:9px; font-size:.82rem;"> <a href="404.html">Message</a></button>
       </div>
     </div>
 
@@ -293,35 +293,35 @@
 
     <!-- APPOINTMENT HISTORY -->
     <div class="section-title-row" id="history"><h3>Appointment history</h3></div>
-    <div class="card" style="padding:24px; margin-bottom:24px;">
+    <div class="card appointment-history-card" style="padding:24px; margin-bottom:24px;">
       <div class="dash-table-wrap">
-        <table class="dash-table">
+        <table class="dash-table appointment-history-table">
           <thead><tr><th>Doctor</th><th>Department</th><th>Date</th><th>Status</th></tr></thead>
           <tbody>
-            <tr><td>Dr. Amara Chen</td><td>Cardiology</td><td>Jul 14, 2026</td><td><span class="status-pill status-pill--success">Completed</span></td></tr>
-            <tr><td>Dr. Rohan Mehta</td><td>Neurology</td><td>May 02, 2026</td><td><span class="status-pill status-pill--success">Completed</span></td></tr>
-            <tr><td>Dr. Liam O'Connor</td><td>Dermatology</td><td>Feb 19, 2026</td><td><span class="status-pill status-pill--success">Completed</span></td></tr>
-            <tr><td>Dr. Amara Chen</td><td>Cardiology</td><td>Jan 08, 2026</td><td><span class="status-pill status-pill--danger">Cancelled</span></td></tr>
+            <tr><td data-label="Doctor">Dr. Amara Chen</td><td data-label="Department">Cardiology</td><td data-label="Date">Jul 14, 2026</td><td data-label="Status"><span class="status-pill status-pill--success">Completed</span></td></tr>
+            <tr><td data-label="Doctor">Dr. Rohan Mehta</td><td data-label="Department">Neurology</td><td data-label="Date">May 02, 2026</td><td data-label="Status"><span class="status-pill status-pill--success">Completed</span></td></tr>
+            <tr><td data-label="Doctor">Dr. Liam O'Connor</td><td data-label="Department">Dermatology</td><td data-label="Date">Feb 19, 2026</td><td data-label="Status"><span class="status-pill status-pill--success">Completed</span></td></tr>
+            <tr><td data-label="Doctor">Dr. Amara Chen</td><td data-label="Department">Cardiology</td><td data-label="Date">Jan 08, 2026</td><td data-label="Status"><span class="status-pill status-pill--danger">Cancelled</span></td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <div class="chart-row" style="grid-template-columns: 1fr 1fr;">
+    <div class="chart-row notifications-row" style="grid-template-columns: 1fr 1fr;">
       <!-- PRESCRIPTIONS -->
-      <div class="card" style="padding:24px;" id="prescriptions">
+      <!-- <div class="card" style="padding:24px;" id="prescriptions">
         <div class="section-title-row"><h3>Prescriptions</h3></div>
         <div class="rx-item">
           <span class="rx-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg></span>
           <div style="flex:1;"><div class="rx-name">Atorvastatin 10mg</div><div class="rx-meta">1 tablet daily · 2 refills left</div></div>
-          <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;">Refill</button>
+          <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;"> <a href="404.html">Refill</a></button>
         </div>
         <div class="rx-item">
           <span class="rx-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z"/></svg></span>
           <div style="flex:1;"><div class="rx-name">Metoprolol 25mg</div><div class="rx-meta">2 tablets daily · 0 refills left</div></div>
-          <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;">Request</button>
+          <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;"> <a href="404.html">Request</a></button>
         </div>
-      </div>
+      </div> -->
 
       <!-- NOTIFICATIONS -->
       <div class="card" style="padding:24px;" id="messages">
@@ -345,7 +345,7 @@
 
     <!-- BILLING & INSURANCE -->
     <div class="section-title-row" id="billing"><h3>Billing &amp; insurance</h3></div>
-    <div class="chart-row" style="grid-template-columns: 1.4fr 1fr; margin-bottom:24px;">
+    <div class="chart-row billing-row" style="grid-template-columns: 1.4fr 1fr; margin-bottom:24px;">
       <div class="card" style="padding:24px;">
         <div class="dash-table-wrap">
           <table class="dash-table">
@@ -369,7 +369,7 @@
           <div class="health-metric-label" style="margin-bottom:6px;">Outstanding balance</div>
           <div class="health-metric-val" style="font-size:1.6rem;">$220.00</div>
         </div>
-        <button type="button" class="btn btn-primary magnetic-target" style="width:100%; justify-content:center; margin-top:16px;">Make a Payment</button>
+        <button type="button" class="btn btn-primary magnetic-target" style="width:100%; justify-content:center; margin-top:16px;"> <a href="404.html">Make a Payment</a></button>
       </div>
     </div>
 
@@ -379,17 +379,17 @@
       <div class="rx-item">
         <span class="rx-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
         <div style="flex:1;"><div class="rx-name">Lab Results — Jul 14, 2026</div><div class="rx-meta">Complete Blood Count · PDF · 240 KB</div></div>
-        <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;">Download</button>
+        <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;"> <a href="404.html">Download</a></button>
       </div>
       <div class="rx-item">
         <span class="rx-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
         <div style="flex:1;"><div class="rx-name">Visit Summary — Cardiology</div><div class="rx-meta">Dr. Amara Chen · PDF · 180 KB</div></div>
-        <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;">Download</button>
+        <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;"> <a href="404.html">Download</a></button>
       </div>
       <div class="rx-item">
         <span class="rx-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
         <div style="flex:1;"><div class="rx-name">Immunization Record</div><div class="rx-meta">Updated Jan 08, 2026 · PDF · 95 KB</div></div>
-        <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;">Download</button>
+        <button type="button" class="btn btn-ghost" style="padding:8px 14px; font-size:.78rem;"> <a href="404.html">Download</a></button>
       </div>
     </div>
 

@@ -284,6 +284,19 @@
     const next = document.querySelector('.testi-arrow--next');
     let index = 0, timer;
 
+    function sizeStage(){
+      const active = cards[index];
+      if(!active) return;
+      const content = active.children[1];
+      const avatar = active.children[0];
+      const styles = getComputedStyle(active);
+      const gap = parseFloat(styles.gap) || 0;
+      const padding = (parseFloat(styles.paddingTop) || 0) + (parseFloat(styles.paddingBottom) || 0);
+      const contentHeight = content ? content.scrollHeight : 0;
+      const avatarHeight = avatar ? avatar.getBoundingClientRect().height : 0;
+      stage.style.minHeight = Math.max(300, contentHeight + padding + (window.innerWidth <= 768 ? avatarHeight + gap : 0)) + 'px';
+    }
+
     function show(i){
       const prevIndex = index;
       index = (i + cards.length) % cards.length;
@@ -291,6 +304,7 @@
 
       cards.forEach((c, idx) => c.classList.toggle('is-active', idx === index));
       dots.forEach((d, idx) => d.classList.toggle('is-active', idx === index));
+      sizeStage();
 
       if(window.gsap && !reduced){
         // Fade the outgoing card out explicitly — GSAP sets opacity via
@@ -308,6 +322,7 @@
       timer = setInterval(() => show(index + 1), 5500);
     }
     show(0); restart();
+    window.addEventListener('resize', sizeStage);
     next && next.addEventListener('click', () => { show(index + 1); restart(); });
     prev && prev.addEventListener('click', () => { show(index - 1); restart(); });
     dots.forEach((d, i) => d.addEventListener('click', () => { show(i); restart(); }));
